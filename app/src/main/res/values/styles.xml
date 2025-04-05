@@ -11,7 +11,8 @@
     <style name="CodeDotStyle">
         <item name="android:layout_width">16dp</item>
         <item name="android:layout_height">16dp</item>
-        <item name="android:layout_margin">4dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
         <item name="android:background">@drawable/dot_circle</item>
     </style>
 
@@ -22,7 +23,7 @@
         <item name="android:padding">2dp</item>
         <item name="android:textColor">@color/button_double_login_text</item>
         <item name="android:background">@android:color/transparent</item>
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_margin">6dp</item>
     </style>
 
 

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">House_under_safe</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Главная</string>
+    <string name="title_management">Управление</string>
+    <string name="title_compensation">Возмещение</string>
+    <string name="title_payments">Платежи</string>
+    <string name="title_profile">Профиль</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_color">#EFEFEF</color>
+    <color name="button_double_login_text">#275CAC</color>
+    <color name="dot_color">#424242</color>
+</resources>
