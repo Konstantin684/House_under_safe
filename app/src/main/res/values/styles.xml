@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="CircularAvatarStyle">
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:background">@drawable/circle_mask</item>
+        <item name="android:clipToOutline" tools:targetApi="31">true</item>
+    </style>
+
+    <style name="CodeDotStyle">
+        <item name="android:layout_width">16dp</item>
+        <item name="android:layout_height">16dp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:background">@drawable/dot_circle</item>
+    </style>
+
+    <style name="KeypadButton">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">65dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textColor">@color/button_double_login_text</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+
+</resources>
