@@ -27,7 +27,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="60dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/profile" />
+            android:src="@drawable/profile_no_active" />
         <!-- Приветствие -->
         <TextView
             android:id="@+id/welcomeText"
