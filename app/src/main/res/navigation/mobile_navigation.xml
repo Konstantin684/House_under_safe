@@ -3,29 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/navigation_home">
     <fragment
-        android:id="@+id/compensationFragment"
+        android:id="@+id/navigation_compensation"
         android:name="com.example.house_under_safe.ui.compensation.CompensationFragment"
         android:label="fragment_compensation"
         tools:layout="@layout/fragment_compensation" />
     <fragment
-        android:id="@+id/managementFragment"
+        android:id="@+id/navigation_management"
         android:name="com.example.house_under_safe.ui.management.ManagementFragment"
         android:label="fragment_management"
         tools:layout="@layout/fragment_management" />
     <fragment
-        android:id="@+id/paymentsFragment"
+        android:id="@+id/navigation_payments"
         android:name="com.example.house_under_safe.ui.payments.PaymentsFragment"
         android:label="fragment_payments"
         tools:layout="@layout/fragment_payments" />
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/navigation_home"
         android:name="com.example.house_under_safe.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/profileFragment"
+        android:id="@+id/navigation_profile"
         android:name="com.example.house_under_safe.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />

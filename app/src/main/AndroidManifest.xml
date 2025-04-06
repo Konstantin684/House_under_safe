@@ -12,22 +12,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.House_under_safe"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+    <!-- Заставка — теперь LAUNCHER -->
+    <activity
+        android:name=".zastavka.ScreenSaverActivity"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".double_login.DoubleLoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".zastavka.ScreenSaverActivity"
-            android:exported="false" />
+    <!-- Экран авторизации -->
+    <activity
+        android:name=".double_login.DoubleLoginActivity"
+        android:exported="false" />
+
+    <!-- Главный экран -->
+    <activity
+        android:name=".MainActivity"
+        android:exported="false"
+        android:label="@string/title_activity_main" />
+
     </application>
 
 </manifest>

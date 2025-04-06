@@ -3,7 +3,8 @@
     <color name="black">#1B1B1B</color>
     <color name="white">#FFFFFFFF</color>
     <color name="text_color">#000000</color>
-    <color name="dot_color">#D9D9D9</color>
+    <color name="dot_color_empty">#D9D9D9</color>
+    <color name="dot_color_field">#3485FF</color>
     <color name="button_double_login">#FFFFFFFF</color>
     <color name="button_double_login_text">#3485FF</color>
     <color name="button_double_login_text_inactive">#6B6B6B</color>
