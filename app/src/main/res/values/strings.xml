@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">House_under_safe</string>
+    <string name="app_name">Дом под защитой</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Главная</string>
     <string name="title_management">Управление</string>
@@ -7,4 +7,5 @@
     <string name="title_payments">Платежи</string>
     <string name="title_profile">Профиль</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_management_fragment">Управление полисами</string>
 </resources>

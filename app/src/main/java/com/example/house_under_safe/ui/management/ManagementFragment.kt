@@ -4,37 +4,38 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.house_under_safe.R
 import com.example.house_under_safe.databinding.FragmentManagementBinding
 
 class ManagementFragment : Fragment() {
 
-    private var _binding: FragmentManagementBinding? = null
-
-    private val binding get() = _binding!!
+    private lateinit var listView: ListView
+    private lateinit var adapter: ManagementAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val managementViewModel =
-            ViewModelProvider(this).get(ManagementViewModel::class.java)
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_management, container, false)
 
-        _binding = FragmentManagementBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        listView = view.findViewById(R.id.management_list)
 
-        val textView: TextView = binding.textDashboard
-        managementViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
-    }
+        val items = listOf(
+            ManagementItem(R.drawable.gor_jil_ned, "Городская жилая недвижимость", "Оформить страховой полис для городской жилой недвижимости (квартира, комната в коммунальной квартире)"),
+            ManagementItem(R.drawable.zagor_jil_ned, "Загородная жилая недвижимость", "Оформить страховой полис для загородной жилой недвижимости (дачные дома с возможностью регистрации, жилые дома)"),
+            ManagementItem(R.drawable.gor_nejil_ned, "Городская нежилая недвижимость", "Оформить страховой полис для городской нежилой недвижимости (апартаменты)"),
+            ManagementItem(R.drawable.komer_ned, "Комерческая недвижимость", "Оформить страховой полис для коммерческой недвижимости (склады, офисные помещения, гостиницы, отели, мотели, торговые помещения)"),
+            ManagementItem(R.drawable.prom_ned, "Промышленная недвижимость", "Оформить страховой полис для промышленной недвижимости (промышленные сооружения, работающие заводы, фабрики)"),
+            ManagementItem(R.drawable.prodl_polis, "Продление полиса", "Продлить срок действия уже оформленного страхового полиса на недвижимость")
+        )
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        adapter = ManagementAdapter(requireContext(), items)
+        listView.adapter = adapter
+
+        return view
     }
 }
