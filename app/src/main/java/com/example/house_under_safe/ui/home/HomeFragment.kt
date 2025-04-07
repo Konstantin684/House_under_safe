@@ -25,8 +25,8 @@ class HomeFragment : Fragment() {
 
         val homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
-        val listView = binding.listView
-        val placeholder = root.findViewById<View>(R.id.placeholder_empty)
+        val listView = binding.listViewHome
+        val placeholder = root.findViewById<View>(R.id.placeholder_empty_home)
 
         // Здесь можно подключиться к данным ViewModel (пока эмулируем список)
         val items = listOf<String>() // или, например: listOf("Полис 1", "Полис 2")

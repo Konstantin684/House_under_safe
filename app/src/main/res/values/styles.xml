@@ -32,6 +32,8 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+
+
     <style name="Theme.HouseUnderSafe" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
 
 </resources>

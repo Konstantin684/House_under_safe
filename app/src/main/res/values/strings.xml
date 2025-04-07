@@ -8,5 +8,8 @@
     <string name="title_profile">Профиль</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_management_fragment">Управление полисами</string>
-    <string name="empty_state_image_desc">плэйсхолдер для главной страницы</string>
+    <string name="title_compensation_fragment">Возмещение ущерба</string>
+    <string name="title_payments_fragment">Платежи</string>
+    <string name="empty_state_image_desc_home">плэйсхолдер для главной страницы</string>
+    <string name="empty_state_image_desc_compensation">плэйсхолдер для страницы возмещения</string>
 </resources>
