@@ -1,11 +1,14 @@
 package com.example.house_under_safe.double_login
 
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +16,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.house_under_safe.MainActivity
 import com.example.house_under_safe.R
+import java.io.File
 
 class DoubleLoginActivity : AppCompatActivity() {
 
@@ -31,10 +35,26 @@ class DoubleLoginActivity : AppCompatActivity() {
             insets
         }
 
-        // Контейнер, который будет трястись
+        // ⬇️ Отображаем сохранённое изображение профиля
+        val avatarImage = findViewById<ImageView>(R.id.avatarImage)
+        val prefs = getSharedPreferences("profile_prefs", Context.MODE_PRIVATE)
+        val avatarPath = prefs.getString("avatar_path", null)
+
+        if (!avatarPath.isNullOrEmpty()) {
+            val file = File(avatarPath)
+            if (file.exists()) {
+                avatarImage.setImageURI(Uri.fromFile(file))
+            } else {
+                avatarImage.setImageResource(R.drawable.profile_incognito)
+            }
+        } else {
+            avatarImage.setImageResource(R.drawable.profile_incognito)
+        }
+
+        // Контейнер для анимации
         dotsContainer = findViewById(R.id.codeDots)
 
-        // Точки ввода кода
+        // Точки для отображения введённых символов
         codeDots = listOf(
             findViewById(R.id.dot1),
             findViewById(R.id.dot2),
@@ -42,7 +62,7 @@ class DoubleLoginActivity : AppCompatActivity() {
             findViewById(R.id.dot4)
         )
 
-        // Обработка кнопок 0–9
+        // Обработка цифровых кнопок
         val numberIds = listOf(
             R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4,
             R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9
@@ -55,12 +75,14 @@ class DoubleLoginActivity : AppCompatActivity() {
             }
         }
 
+        // Кнопка выхода
         findViewById<Button>(R.id.btnExit)?.setOnClickListener {
             finish()
         }
 
+        // Биометрия
         findViewById<ImageButton>(R.id.btnFingerprint)?.setOnClickListener {
-            // TODO: Биометрия
+            // TODO: реализовать биометрию
         }
     }
 

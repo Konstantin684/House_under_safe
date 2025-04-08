@@ -1,21 +1,21 @@
 package com.example.house_under_safe.ui.profile
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.house_under_safe.databinding.FragmentProfileBinding
-
-
+import com.example.house_under_safe.profile_details.ProfileDetailsActivity
+import java.io.File
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
-
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -23,16 +23,31 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val managementViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
-
+        val profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        // Загружаем путь к изображению из SharedPreferences
+        val prefs = requireContext().getSharedPreferences("profile_prefs", Context.MODE_PRIVATE)
+        val avatarPath = prefs.getString("avatar_path", null)
 
-        managementViewModel.text.observe(viewLifecycleOwner) {
-
+        if (!avatarPath.isNullOrEmpty()) {
+            val file = File(avatarPath)
+            if (file.exists()) {
+                binding.avatarImage.setImageURI(Uri.fromFile(file))
+            }
         }
+
+        // Переход на ProfileDetailsActivity по нажатию на карточку профиля
+        binding.profileCard.setOnClickListener {
+            val intent = Intent(requireContext(), ProfileDetailsActivity::class.java)
+            startActivity(intent)
+        }
+
+        profileViewModel.text.observe(viewLifecycleOwner) {
+            // При необходимости отобразить текст
+        }
+
         return root
     }
 

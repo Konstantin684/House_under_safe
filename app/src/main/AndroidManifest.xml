@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,27 +15,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.House_under_safe"
         tools:targetApi="31">
-    <!-- Заставка — теперь LAUNCHER -->
-    <activity
-        android:name=".zastavka.ScreenSaverActivity"
-        android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+        <activity
+            android:name=".profile_details.ProfileDetailsActivity"
+            android:exported="false" />
+        <!-- Заставка — теперь LAUNCHER -->
+        <activity
+            android:name=".zastavka.ScreenSaverActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <!-- Экран авторизации -->
-    <activity
-        android:name=".double_login.DoubleLoginActivity"
-        android:exported="false" />
-
-    <!-- Главный экран -->
-    <activity
-        android:name=".MainActivity"
-        android:exported="false"
-        android:label="@string/title_activity_main" />
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- Экран авторизации -->
+        <activity
+            android:name=".double_login.DoubleLoginActivity"
+            android:exported="false" /> <!-- Главный экран -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main" />
     </application>
 
 </manifest>
