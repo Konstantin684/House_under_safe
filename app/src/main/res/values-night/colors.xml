@@ -9,4 +9,5 @@
     <color name="dot_color_empty">#424242</color>
     <color name="dot_color_field">#275CAC</color>
     <color name="button_exit">#9E0D00</color>
+    <color name="back_edittext">#373636</color>
 </resources>

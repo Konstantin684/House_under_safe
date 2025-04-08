@@ -32,6 +32,23 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextViewPassportDescription">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/text_color_description</item>
+        <item name="android:layout_marginStart">2dp</item>
+        <item name="android:layout_marginEnd">2dp</item>
+        <item name="android:layout_marginTop">1dp</item>
+        <item name="android:layout_marginBottom">1dp</item>
+    </style>
+
+    <style name="TextViewPassport">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/text_color_all</item>
+        <item name="android:layout_marginStart">2dp</item>
+        <item name="android:layout_marginEnd">2dp</item>
+        <item name="android:layout_marginTop">1dp</item>
+        <item name="android:layout_marginBottom">1dp</item>
+    </style>
 
     <style name="Theme.HouseUnderSafe" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
 

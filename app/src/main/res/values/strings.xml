@@ -18,5 +18,7 @@
     <string name="design_theme">Тема оформления</string>
     <string name="refund_requests">Заявки на возмещение</string>
     <string name="notification">Уведомления</string>
+    <string name="email">Электронная почта</string>
+    <string name="num_phone">Номер телефона</string>
     <string name="accaunt_not_confirm">учетная запись не подтверждена</string>
 </resources>
