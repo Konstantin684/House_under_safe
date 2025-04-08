@@ -8,4 +8,5 @@
     <color name="button_double_login_text">#275CAC</color>
     <color name="dot_color_empty">#424242</color>
     <color name="dot_color_field">#275CAC</color>
+    <color name="button_exit">#9E0D00</color>
 </resources>

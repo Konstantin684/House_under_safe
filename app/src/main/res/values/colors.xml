@@ -12,4 +12,5 @@
     <color name="button_double_login">#FFFFFFFF</color>
     <color name="button_double_login_text">#3485FF</color>
     <color name="button_double_login_text_inactive">#6B6B6B</color>
+    <color name="button_exit">#DF1300</color>
 </resources>

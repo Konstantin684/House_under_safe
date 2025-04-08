@@ -12,4 +12,11 @@
     <string name="title_payments_fragment">Платежи</string>
     <string name="empty_state_image_desc_home">плэйсхолдер для главной страницы</string>
     <string name="empty_state_image_desc_compensation">плэйсхолдер для страницы возмещения</string>
+    <string name="out_of_profile">Выйти из учетной записи</string>
+    <string name="delete_profile">Удалить профиль</string>
+    <string name="about_app">О приложении</string>
+    <string name="design_theme">Тема оформления</string>
+    <string name="refund_requests">Заявки на возмещение</string>
+    <string name="notification">Уведомления</string>
+    <string name="accaunt_not_confirm">учетная запись не подтверждена</string>
 </resources>

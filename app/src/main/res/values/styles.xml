@@ -33,7 +33,6 @@
     </style>
 
 
-
     <style name="Theme.HouseUnderSafe" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
 
 </resources>
