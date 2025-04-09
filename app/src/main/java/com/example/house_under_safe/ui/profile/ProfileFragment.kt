@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.house_under_safe.databinding.FragmentProfileBinding
+import com.example.house_under_safe.notifications.NotificationsActivity
 import com.example.house_under_safe.profile_details.ProfileDetailsActivity
 import java.io.File
 
@@ -49,6 +50,12 @@ class ProfileFragment : Fragment() {
         // Переход на ProfileDetailsActivity по нажатию на карточку профиля
         binding.profileCard.setOnClickListener {
             val intent = Intent(requireContext(), ProfileDetailsActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Переход на NotificationsActivity по нажатию на карточку профиля
+        binding.notificationCard.setOnClickListener {
+            val intent = Intent(requireContext(), NotificationsActivity::class.java)
             startActivity(intent)
         }
 

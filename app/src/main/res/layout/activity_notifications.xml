@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".notifications.NotificationsActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/custom_toolbar_notifications"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Фильтрация (вкладки) -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupFilters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:padding="8dp"
+            android:orientation="horizontal"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAll"
+                style="@style/AppChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:checked="true"
+                android:text="Все" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPayments"
+                style="@style/AppChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Платежи" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipClaims"
+                style="@style/AppChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Заявки на возмещение" />
+
+        </com.google.android.material.chip.ChipGroup>
+        <!-- Список транзакций -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewTransactions"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="8dp" />
+
+        <include
+            android:id="@+id/placeholderAll"
+            layout="@layout/placeholder_notification_all_activity"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/placeholderPayments"
+            layout="@layout/placeholder_notification_payments_activity"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/placeholderClaims"
+            layout="@layout/placeholder_notification_compensation_activity"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

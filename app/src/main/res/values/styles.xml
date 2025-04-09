@@ -69,6 +69,17 @@
         <item name="android:button">@null</item> <!-- скрыть кружок выбора -->
     </style>
 
+    <style name="AppChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/textcolor_chip_selector</item>
+        <item name="chipBackgroundColor">@color/background_chip_selector</item>
+        <item name="chipStrokeColor">@color/background_chip_selector</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="android:paddingHorizontal">12dp</item>
+    </style>
+
+
 
 
 
