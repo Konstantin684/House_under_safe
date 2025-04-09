@@ -8,13 +8,14 @@
 
     <TextView
         android:id="@+id/textView"
+        style="@style/TitleText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:gravity="left|center_vertical"
         android:text="@string/title_management_fragment"
         android:textSize="24sp"
-        style="@style/TitleText"
         app:layout_constraintBottom_toTopOf="@+id/management_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

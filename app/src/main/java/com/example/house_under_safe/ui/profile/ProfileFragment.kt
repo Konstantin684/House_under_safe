@@ -52,6 +52,12 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
+        // Переход на экран темы оформления
+        binding.designThemeCard.setOnClickListener {
+            val intent = Intent(requireContext(), com.example.house_under_safe.design_theme.DesignThemeActivity::class.java)
+            startActivity(intent)
+        }
+
         profileViewModel.text.observe(viewLifecycleOwner) {
             // При необходимости отобразить текст
         }

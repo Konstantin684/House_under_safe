@@ -86,6 +86,7 @@ class ProfileDetailsActivity : AppCompatActivity() {
 
         findViewById<ImageView>(R.id.btn_back)?.setOnClickListener {
             finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
     }
 
