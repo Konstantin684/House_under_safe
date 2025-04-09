@@ -47,9 +47,49 @@
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/passport_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:cardCornerRadius="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/card_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:text="@string/add_pasport"
+                    android:textColor="@color/text_color_all" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="10dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="10dp"
+                    app:srcCompat="@drawable/arrow_right" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,15 +113,15 @@
                     android:id="@+id/editTextEmail"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="2dp"
                     android:background="@drawable/edittext_background_selector"
                     android:ems="10"
                     android:enabled="false"
                     android:hint="Введите Email example@examp.ru"
                     android:inputType="textEmailAddress"
                     android:padding="5dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="2dp"
                     android:text=""
                     android:textColor="@color/text_color_all" />
             </LinearLayout>
@@ -91,209 +131,50 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/card_color"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginBottom="2dp"
-                        android:text="@string/num_phone"
-                        android:textColor="@color/text_color_description" />
-
-                    <EditText
-                        android:id="@+id/editTextPhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@drawable/edittext_background_selector"
-                        android:ems="10"
-                        android:enabled="false"
-                        android:hint="Введите номер телефона +7(XXX)XXX-XX-XX"
-                        android:inputType="phone"
-                        android:padding="5dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginBottom="2dp"
-                        android:text=""
-                        android:textColor="@color/text_color_all" />
-                </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Фамилия -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            app:cardCornerRadius="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:background="@color/card_color"
+                android:orientation="vertical"
                 android:padding="5dp">
 
                 <TextView
+                    android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="2dp"
-                    android:text="Фамилия"
+                    android:text="@string/num_phone"
                     android:textColor="@color/text_color_description" />
 
                 <EditText
-                    android:id="@+id/editTextLastName"
+                    android:id="@+id/editTextPhone"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="2dp"
                     android:background="@drawable/edittext_background_selector"
+                    android:ems="10"
                     android:enabled="false"
-                    android:hint="Введите фамилию"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/text_color_all"
+                    android:hint="Введите номер телефона +7(XXX)XXX-XX-XX"
+                    android:inputType="phone"
                     android:padding="5dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="2dp" />
+                    android:text=""
+                    android:textColor="@color/text_color_all" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Имя -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/card_color"
-                android:padding="5dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Имя"
-                    android:textColor="@color/text_color_description"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="2dp"/>
-
-                <EditText
-                    android:id="@+id/editTextFirstName"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/edittext_background_selector"
-                    android:enabled="false"
-                    android:hint="Введите имя"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/text_color_all"
-                    android:padding="5dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="2dp"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Отчество -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/card_color"
-                android:padding="5dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Отчество"
-                    android:textColor="@color/text_color_description"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="2dp"/>
-
-                <EditText
-                    android:id="@+id/editTextPatronymic"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/edittext_background_selector"
-                    android:enabled="false"
-                    android:hint="Введите отчество"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/text_color_all"
-                    android:padding="5dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="2dp"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="5dp"
-                android:background="@color/card_color">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
-                        android:paddingTop="2dp"
-                        android:paddingBottom="2dp"
-                        android:text="@string/date_birth"
-                        android:textColor="@color/text_color_description" />
-
-                    <EditText
-                        android:id="@+id/editTextDateOfBirth"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@drawable/edittext_background_selector"
-                        android:ems="10"
-                        android:enabled="false"
-                        android:hint="Введите дату рождения XX/XX/XXXX"
-                        android:inputType="date"
-                        android:padding="5dp"
-                        android:paddingTop="2dp"
-                        android:paddingBottom="5dp"
-                        android:text=""
-                        android:textColor="@color/text_color_all" />
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <Button
@@ -303,8 +184,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:enabled="false"
-                app:cornerRadius="5dp"
-                android:text="@string/save"/>
+                android:text="@string/save"
+                app:cornerRadius="5dp" />
 
             <Button
                 android:id="@+id/button_edit"
@@ -313,8 +194,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:enabled="true"
-                app:cornerRadius="5dp"
-                android:text="@string/edit"/>
+                android:text="@string/edit"
+                app:cornerRadius="5dp" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

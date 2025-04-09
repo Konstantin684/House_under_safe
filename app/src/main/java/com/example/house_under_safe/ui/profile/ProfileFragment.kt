@@ -31,8 +31,9 @@ class ProfileFragment : Fragment() {
         val root: View = binding.root
 
         // Загружаем путь к изображению из SharedPreferences
-        val prefs = requireContext().getSharedPreferences("profile_prefs", Context.MODE_PRIVATE)
-        val avatarPath = prefs.getString("avatar_path", null)
+        val prefs = requireContext().getSharedPreferences("passport_prefs", Context.MODE_PRIVATE)
+        val prefs_2 = requireContext().getSharedPreferences("profile_prefs", Context.MODE_PRIVATE)
+        val avatarPath = prefs_2.getString("avatar_path", null)
 
         if (!avatarPath.isNullOrEmpty()) {
             val file = File(avatarPath)

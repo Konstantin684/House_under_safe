@@ -26,4 +26,7 @@
     <string name="accaunt_not_confirm">учетная запись не подтверждена</string>
     <string name="save">Сохранить</string>
     <string name="edit">Редактировать</string>
+    <string name="add_pasport">Данные документа удостоверяющего личность</string>
+    <string name="passport">Паспорт</string>
+    <string name="add_data">Введите данные</string>
 </resources>

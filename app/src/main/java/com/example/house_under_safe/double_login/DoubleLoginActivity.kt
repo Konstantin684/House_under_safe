@@ -36,7 +36,8 @@ class DoubleLoginActivity : AppCompatActivity() {
             insets
         }
 
-        val prefs = getSharedPreferences("profile_prefs", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("passport_prefs", Context.MODE_PRIVATE)
+        val prefs_2 = getSharedPreferences("profile_prefs", Context.MODE_PRIVATE)
         val firstName = prefs.getString("firstName", "")?.uppercase()
 
         val nameTextView = findViewById<TextView>(R.id.welcomeText)
@@ -45,7 +46,7 @@ class DoubleLoginActivity : AppCompatActivity() {
 
         //  Отображаем сохранённое изображение профиля
         val avatarImage = findViewById<ImageView>(R.id.avatarImage)
-        val avatarPath = prefs.getString("avatar_path", null)
+        val avatarPath = prefs_2.getString("avatar_path", null)
 
         if (!avatarPath.isNullOrEmpty()) {
             val file = File(avatarPath)
@@ -116,7 +117,7 @@ class DoubleLoginActivity : AppCompatActivity() {
     }
 
     private fun checkCodeAndProceed() {
-        val correctCode = "1234"
+        val correctCode = "1111"
 
         if (enteredCode.toString() == correctCode) {
             startActivity(Intent(this, MainActivity::class.java))

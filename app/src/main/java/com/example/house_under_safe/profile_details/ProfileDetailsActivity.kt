@@ -5,36 +5,26 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.widget.*
+import android.widget.EditText
+import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.house_under_safe.R
+import com.example.house_under_safe.about_app.AboutAppActivity
+import com.example.house_under_safe.databinding.ActivityProfileDetailsBinding
+import com.example.house_under_safe.passport.PassportActivity
 import java.io.File
 import java.io.FileOutputStream
 import java.util.*
 
 class ProfileDetailsActivity : AppCompatActivity() {
 
-    private lateinit var avatarImage: ImageView
-    private lateinit var btnChangePhoto: TextView
-    private lateinit var buttonSave: Button
-    private lateinit var buttonEdit: Button
-
-    private lateinit var editTextEmail: EditText
-    private lateinit var editTextPhone: EditText
-    private lateinit var editTextDateOfBirth: EditText
-    private lateinit var editTextLastName: EditText
-    private lateinit var editTextFirstName: EditText
-    private lateinit var editTextPatronymic: EditText
-
-
-    private lateinit var editFields: List<EditText>
     private lateinit var prefs: Context
+    private lateinit var editFields: List<EditText>
 
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
-            avatarImage.setImageURI(it)
+            binding.avatarImage.setImageURI(it)
             saveAvatarToInternalStorage(it)?.let { path ->
                 getSharedPreferences("profile_prefs", Context.MODE_PRIVATE)
                     .edit().putString("avatar_path", path).apply()
@@ -42,46 +32,43 @@ class ProfileDetailsActivity : AppCompatActivity() {
         }
     }
 
+    private var _binding: ActivityProfileDetailsBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_details)
+        _binding = ActivityProfileDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         prefs = applicationContext
-        avatarImage = findViewById(R.id.avatarImage)
-        btnChangePhoto = findViewById(R.id.btn_change_photo)
-        buttonSave = findViewById(R.id.button_save)
-        buttonEdit = findViewById(R.id.button_edit)
 
-        editTextEmail = findViewById(R.id.editTextEmail)
-        editTextPhone = findViewById(R.id.editTextPhone)
-        editTextLastName = findViewById(R.id.editTextLastName)
-        editTextFirstName = findViewById(R.id.editTextFirstName)
-        editTextPatronymic = findViewById(R.id.editTextPatronymic)
-        editTextDateOfBirth = findViewById(R.id.editTextDateOfBirth)
-
-        editFields = listOf(editTextEmail, editTextPhone, editTextLastName,editTextFirstName,editTextPatronymic, editTextDateOfBirth)
+        // Собираем список редактируемых полей
+        editFields = listOf(
+            binding.editTextEmail,
+            binding.editTextPhone
+        )
 
         loadSavedData()
         loadSavedAvatar()
         setFieldsEnabled(false)
 
-        btnChangePhoto.setOnClickListener { pickImage.launch("image/*") }
+        binding.btnChangePhoto.setOnClickListener { pickImage.launch("image/*") }
 
-        buttonEdit.setOnClickListener {
+        binding.buttonEdit.setOnClickListener {
             setFieldsEnabled(true)
-            buttonSave.isEnabled = true
-            buttonEdit.isEnabled = false
+            binding.buttonSave.isEnabled = true
+            binding.buttonEdit.isEnabled = false
         }
 
-        buttonSave.setOnClickListener {
+        binding.buttonSave.setOnClickListener {
             saveData()
             setFieldsEnabled(false)
-            buttonSave.isEnabled = false
-            buttonEdit.isEnabled = true
+            binding.buttonSave.isEnabled = false
+            binding.buttonEdit.isEnabled = true
         }
 
-        editTextDateOfBirth.setOnClickListener {
-            if (editTextDateOfBirth.isEnabled) showDatePicker()
+        binding.passportCard.setOnClickListener {
+            startActivity(Intent(this, PassportActivity::class.java))
         }
 
         findViewById<ImageView>(R.id.btn_back)?.setOnClickListener {
@@ -96,26 +83,15 @@ class ProfileDetailsActivity : AppCompatActivity() {
 
     private fun saveData() {
         getSharedPreferences("profile_prefs", Context.MODE_PRIVATE).edit()
-            .putString("email", editTextEmail.text.toString())
-            .putString("phone", editTextPhone.text.toString())
-            .putString("lastName", editTextLastName.text.toString())
-            .putString("firstName", editTextFirstName.text.toString())
-            .putString("patronymic", editTextPatronymic.text.toString())
-            .putString("dob", editTextDateOfBirth.text.toString())
+            .putString("email", binding.editTextEmail.text.toString())
+            .putString("phone", binding.editTextPhone.text.toString())
             .apply()
     }
 
-
-
-
     private fun loadSavedData() {
         val prefs = getSharedPreferences("profile_prefs", Context.MODE_PRIVATE)
-        editTextEmail.setText(prefs.getString("email", ""))
-        editTextPhone.setText(prefs.getString("phone", ""))
-        editTextLastName.setText(prefs.getString("lastName", ""))
-        editTextFirstName.setText(prefs.getString("firstName", ""))
-        editTextPatronymic.setText(prefs.getString("patronymic", ""))
-        editTextDateOfBirth.setText(prefs.getString("dob", ""))
+        binding.editTextEmail.setText(prefs.getString("email", ""))
+        binding.editTextPhone.setText(prefs.getString("phone", ""))
     }
 
     private fun loadSavedAvatar() {
@@ -124,7 +100,7 @@ class ProfileDetailsActivity : AppCompatActivity() {
         path?.let {
             val file = File(it)
             if (file.exists()) {
-                avatarImage.setImageURI(Uri.fromFile(file))
+                binding.avatarImage.setImageURI(Uri.fromFile(file))
             }
         }
     }
@@ -144,18 +120,8 @@ class ProfileDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun showDatePicker() {
-        val calendar = Calendar.getInstance()
-        val datePicker = DatePickerDialog(
-            this,
-            { _, year, month, day ->
-                val selectedDate = "%02d.%02d.%d".format(day, month + 1, year)
-                editTextDateOfBirth.setText(selectedDate)
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        )
-        datePicker.show()
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
