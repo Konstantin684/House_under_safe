@@ -9,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.house_under_safe.about_app.AboutAppActivity
 import com.example.house_under_safe.databinding.FragmentProfileBinding
+import com.example.house_under_safe.design_theme.DesignThemeActivity
 import com.example.house_under_safe.notifications.NotificationsActivity
 import com.example.house_under_safe.profile_details.ProfileDetailsActivity
 import java.io.File
@@ -53,7 +55,7 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
-        // Переход на NotificationsActivity по нажатию на карточку профиля
+        // Переход на NotificationsActivity по нажатию на карточку уведомления
         binding.notificationCard.setOnClickListener {
             val intent = Intent(requireContext(), NotificationsActivity::class.java)
             startActivity(intent)
@@ -61,7 +63,13 @@ class ProfileFragment : Fragment() {
 
         // Переход на экран темы оформления
         binding.designThemeCard.setOnClickListener {
-            val intent = Intent(requireContext(), com.example.house_under_safe.design_theme.DesignThemeActivity::class.java)
+            val intent = Intent(requireContext(), DesignThemeActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Переход на AboutAppActivity по нажатию на карточку о приложении
+        binding.aboutAppCard.setOnClickListener {
+            val intent = Intent(requireContext(), AboutAppActivity::class.java)
             startActivity(intent)
         }
 
