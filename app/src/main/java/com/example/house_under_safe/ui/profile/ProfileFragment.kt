@@ -38,6 +38,14 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        // Загружаем и отображаем ФИО
+        val lastName = prefs.getString("lastName", "") ?: ""
+        val firstName = prefs.getString("firstName", "") ?: ""
+        val patronymic = prefs.getString("patronymic", "") ?: ""
+        val fullName = "$lastName $firstName $patronymic".trim().uppercase()
+
+        binding.profileFio.text = fullName // убедись, что такое поле есть в layout
+
         // Переход на ProfileDetailsActivity по нажатию на карточку профиля
         binding.profileCard.setOnClickListener {
             val intent = Intent(requireContext(), ProfileDetailsActivity::class.java)

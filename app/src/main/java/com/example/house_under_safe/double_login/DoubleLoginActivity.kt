@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -35,9 +36,15 @@ class DoubleLoginActivity : AppCompatActivity() {
             insets
         }
 
-        // ⬇️ Отображаем сохранённое изображение профиля
-        val avatarImage = findViewById<ImageView>(R.id.avatarImage)
         val prefs = getSharedPreferences("profile_prefs", Context.MODE_PRIVATE)
+        val firstName = prefs.getString("firstName", "")?.uppercase()
+
+        val nameTextView = findViewById<TextView>(R.id.welcomeText)
+        nameTextView.text = "Здравствуйте, $firstName!"
+
+
+        //  Отображаем сохранённое изображение профиля
+        val avatarImage = findViewById<ImageView>(R.id.avatarImage)
         val avatarPath = prefs.getString("avatar_path", null)
 
         if (!avatarPath.isNullOrEmpty()) {

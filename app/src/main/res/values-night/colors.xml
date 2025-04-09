@@ -10,4 +10,6 @@
     <color name="dot_color_field">#275CAC</color>
     <color name="button_exit">#9E0D00</color>
     <color name="back_edittext">#373636</color>
+    <color name="button_active">#275CAC</color>
+    <color name="button_inactive">#8593A8</color>
 </resources>

@@ -20,5 +20,9 @@
     <string name="notification">Уведомления</string>
     <string name="email">Электронная почта</string>
     <string name="num_phone">Номер телефона</string>
+    <string name="fio">Фамилия Имя Отчество</string>
+    <string name="date_birth">Дата рождения</string>
     <string name="accaunt_not_confirm">учетная запись не подтверждена</string>
+    <string name="save">Сохранить</string>
+    <string name="edit">Редактировать</string>
 </resources>
