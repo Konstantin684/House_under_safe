@@ -1,8 +1,8 @@
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/custom_toolbar_passport"
     android:layout_width="match_parent"
-    android:layout_height="56sp"
-    android:layout_marginTop="16sp"
+    android:layout_height="56dp"
+    android:layout_marginTop="8dp"
     android:elevation="4dp"
     android:paddingStart="16dp"
     android:paddingEnd="16dp">

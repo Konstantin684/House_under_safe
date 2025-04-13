@@ -5,13 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="8dp"
     tools:context=".design_theme.DesignThemeActivity">
 
     <!-- Toolbar -->
     <include
         android:id="@+id/toolbar"
         layout="@layout/custom_toolbar_design_theme"
-        android:text="@string/title_design_theme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

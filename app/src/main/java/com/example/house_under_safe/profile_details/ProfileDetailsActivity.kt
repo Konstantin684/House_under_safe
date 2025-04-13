@@ -9,10 +9,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.house_under_safe.MainActivity
 import com.example.house_under_safe.R
 import com.example.house_under_safe.about_app.AboutAppActivity
 import com.example.house_under_safe.databinding.ActivityProfileDetailsBinding
 import com.example.house_under_safe.passport.PassportActivity
+import com.example.house_under_safe.ui.profile.ProfileFragment
 import java.io.File
 import java.io.FileOutputStream
 import java.util.*

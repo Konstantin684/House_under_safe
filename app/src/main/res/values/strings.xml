@@ -29,4 +29,5 @@
     <string name="add_pasport">Данные документа удостоверяющего личность</string>
     <string name="passport">Паспорт</string>
     <string name="add_data">Введите данные</string>
+    <string name="accaunt_confirmed">Учётная запись подтверждена</string>
 </resources>
