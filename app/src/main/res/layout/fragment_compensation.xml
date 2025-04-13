@@ -6,33 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".ui.compensation.CompensationFragment">
 
-    <LinearLayout
+    <!-- Заголовок -->
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TitleText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginBottom="8dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/title_compensation_fragment"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewCompensation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView"
-            style="@style/TitleText"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:gravity="left|center_vertical"
-            android:text="@string/title_compensation_fragment"
-            android:textSize="24sp" />
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCompensation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_compensation" />
 
-        <ListView
-            android:id="@+id/listViewCompensation"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp" />
-
-        <include
-            layout="@layout/placeholder_compensation_fragment"
-            android:visibility="invisible" />
-    </LinearLayout>
-
+    <!-- Плейсхолдер при пустом списке -->
+    <include
+        android:id="@+id/placeholder_empty_compensation"
+        layout="@layout/placeholder_compensation_fragment"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,49 +7,50 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.house_under_safe.R
 import com.example.house_under_safe.databinding.FragmentCompensationBinding
+import com.example.house_under_safe.ui.home.HomeItem
+import com.example.house_under_safe.ui.home.RiskType
+import com.example.house_under_safe.ui.home.mockHomeItems
 
 class CompensationFragment : Fragment() {
 
     private var _binding: FragmentCompensationBinding? = null
     private val binding get() = _binding!!
+    private lateinit var adapter: CompensationAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCompensationBinding.inflate(inflater, container, false)
-        val root = binding.root
 
-        val compensationViewModel = ViewModelProvider(this)[CompensationViewModel::class.java]
+        val placeholder = binding.root.findViewById<View>(R.id.placeholder_empty_compensation)
+        val dummyList = mockHomeItems // или заполни фейковыми данными
 
-        val listView = binding.listViewCompensation
-        val placeholder = root.findViewById<View>(R.id.placeholder_empty_compensation)
-
-        // Пока заглушка, позже можно заменить на данные из ViewModel
-        val items = listOf<String>() // например: listOf("Заявка 1", "Заявка 2")
-
-        if (items.isEmpty()) {
-            listView.visibility = View.GONE
+        if (dummyList.isEmpty()) {
+            binding.recyclerViewCompensation.visibility = View.GONE
             placeholder.visibility = View.VISIBLE
         } else {
-            listView.visibility = View.VISIBLE
+            binding.recyclerViewCompensation.visibility = View.VISIBLE
             placeholder.visibility = View.GONE
 
-            listView.adapter = ArrayAdapter(
-                requireContext(),
-                android.R.layout.simple_list_item_1,
-                items
-            )
+            adapter = CompensationAdapter(dummyList)
+            binding.recyclerViewCompensation.layoutManager = LinearLayoutManager(requireContext())
+            binding.recyclerViewCompensation.adapter = adapter
         }
 
-        return root
-    }
 
+        return binding.root
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
+
+
+

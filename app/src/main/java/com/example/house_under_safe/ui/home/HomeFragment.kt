@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
         val placeholder = root.findViewById<View>(R.id.placeholder_empty_home)
         val recyclerView = binding.recyclerViewHome
 
-        val items = getDummyItems()
+        val items = mockHomeItems
 
         if (items.isEmpty()) {
             recyclerView.visibility = View.GONE
@@ -45,28 +45,7 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    private fun getDummyItems(): List<HomeItem> {
-        return listOf(
-            /*HomeItem(
-                planResId = R.drawable.image_plan,
-                numberPolice = 123456,
-                locationRegion = "Московская область",
-                typeRealEstate = "Квартира",
-                adresRealEstate = "ул. Ленина, 10",
-                validatyPeriod = "01.01.2024 - 01.01.2025",
-                risks = listOf(RiskType.FIRE, RiskType.FLOOD)
-            ),
-            HomeItem(
-                planResId = R.drawable.image_plan,
-                numberPolice = 654321,
-                locationRegion = "Санкт-Петербург",
-                typeRealEstate = "Дом",
-                adresRealEstate = "пр. Невский, 50",
-                validatyPeriod = "01.02.2024 - 01.02.2025",
-                risks = listOf(RiskType.VANDALISM, RiskType.ROBBERY)
-            )*/
-        )
-    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

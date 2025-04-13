@@ -1,4 +1,4 @@
-package com.example.house_under_safe.ui.home
+package com.example.house_under_safe.ui.compensation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +9,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.house_under_safe.R
 
-class HomeAdapter(
-    private val items: List<HomeItem>
-) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+import com.example.house_under_safe.ui.home.HomeItem
+import com.example.house_under_safe.ui.home.RiskType
 
-    inner class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class CompensationAdapter (
+    private val items: List<HomeItem>
+) : RecyclerView.Adapter<CompensationAdapter.CompensationViewHolder>() {
+
+    inner class CompensationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val numberPolice: TextView = view.findViewById(R.id.number_polise)
         val region: TextView = view.findViewById(R.id.region_polise)
         val typeRealEstate: TextView = view.findViewById(R.id.type_real_estate)
@@ -23,13 +26,13 @@ class HomeAdapter(
         val risksContainer: LinearLayout = view.findViewById(R.id.risksContainer)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompensationViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_home, parent, false)
-        return HomeViewHolder(view)
+            .inflate(R.layout.item_compensation, parent, false)
+        return CompensationViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CompensationViewHolder, position: Int) {
         val item = items[position]
 
         holder.numberPolice.text = item.numberPolice.toString()
