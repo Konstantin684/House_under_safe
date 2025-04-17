@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.house_under_safe.R
 
 class PaymentHistoryAdapter(
-    private val items: List<PaymentItem>
+    private val items: MutableList<PaymentItem>
 ) : RecyclerView.Adapter<PaymentHistoryAdapter.PaymentHistoryViewHolder>() {
 
     inner class PaymentHistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -29,10 +30,31 @@ class PaymentHistoryAdapter(
         val item = items[position]
         holder.paymentNumber.text = item.number
         holder.paymentPolicy.text = item.policy
-        holder.paymentStatus.text = item.status
         holder.paymentAmount.text = item.amount
         holder.paymentDatetime.text = item.datetime ?: ""
+
+        val context = holder.itemView.context
+        when (item.status) {
+            PaymentStatus.PAID -> {
+                holder.paymentStatus.text = "Оплачен"
+                holder.paymentStatus.setTextColor(ContextCompat.getColor(context, R.color.green))
+            }
+            PaymentStatus.CANCELED -> {
+                holder.paymentStatus.text = "Отменен"
+                holder.paymentStatus.setTextColor(ContextCompat.getColor(context, R.color.red))
+            }
+            else -> {
+                holder.paymentStatus.text = "Неизвестно"
+                holder.paymentStatus.setTextColor(ContextCompat.getColor(context, R.color.text_color_all))
+            }
+        }
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun updateItems(newItems: List<PaymentItem>) {
+        items.clear()
+        items.addAll(newItems)
+        notifyDataSetChanged()
+    }
 }

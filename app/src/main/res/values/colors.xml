@@ -18,4 +18,7 @@
     <color name="button_inactive">#C9DCFA</color>
     <color name="text_chip_active">#FFFFFF</color>
     <color name="text_chip_inactive">#3485FF</color>
+    <color name="green">#4CAF50</color>
+    <color name="red">#F44336</color>
+    <color name="orange">#FFA726</color>
 </resources>

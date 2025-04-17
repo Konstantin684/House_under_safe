@@ -6,8 +6,16 @@ import androidx.lifecycle.ViewModel
 
 class PaymentsViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is payment Fragment"
+
+    private val _payments = MutableLiveData<MutableList<PaymentItem>>(mockPaymentItems.toMutableList())
+    val payments: LiveData<MutableList<PaymentItem>> get() = _payments
+
+    fun updatePayment(updated: PaymentItem) {
+        val list = _payments.value ?: return
+        val index = list.indexOfFirst { it.number == updated.number }
+        if (index != -1) {
+            list[index] = updated
+            _payments.value = list.toMutableList() // триггер перерисовки
+        }
     }
-    val text: LiveData<String> = _text
 }

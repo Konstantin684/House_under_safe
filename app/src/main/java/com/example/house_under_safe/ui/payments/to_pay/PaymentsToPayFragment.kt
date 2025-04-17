@@ -5,35 +5,43 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.house_under_safe.R
-import com.example.house_under_safe.ui.payments.PaymentToPayAdapter
-import com.example.house_under_safe.ui.payments.mockPaymentItems
+import com.example.house_under_safe.ui.payments.*
 
 class PaymentsToPayFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    private val viewModel: PaymentsViewModel by activityViewModels()
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var placeholder: View
+    private lateinit var adapter: PaymentToPayAdapter
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_payments_to_pay, container, false)
+        recyclerView = view.findViewById(R.id.recyclerToPay)
+        placeholder = view.findViewById(R.id.placeholder_pay)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerToPay)
-        val placeholder = view.findViewById<View>(R.id.placeholder_pay)
+        adapter = PaymentToPayAdapter(mutableListOf(), viewModel)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
 
-        val toPayItems = mockPaymentItems.filter { it.datetime == null }
-
-        if (toPayItems.isEmpty()) {
-            recyclerView.visibility = View.GONE
-            placeholder.visibility = View.VISIBLE
-        } else {
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.adapter = PaymentToPayAdapter(toPayItems)
-            recyclerView.visibility = View.VISIBLE
-            placeholder.visibility = View.GONE
-        }
+        observePayments()
 
         return view
+    }
+
+
+    private fun observePayments() {
+        viewModel.payments.observe(viewLifecycleOwner, Observer { payments ->
+            val toPayItems = payments.filter { it.status == PaymentStatus.AWAITING }
+            adapter.updateItems(toPayItems.toMutableList())
+
+            placeholder.visibility = if (toPayItems.isEmpty()) View.VISIBLE else View.GONE
+            recyclerView.visibility = if (toPayItems.isEmpty()) View.GONE else View.VISIBLE
+        })
     }
 }
