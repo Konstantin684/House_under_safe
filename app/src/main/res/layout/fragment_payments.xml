@@ -1,113 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.payments.PaymentsFragment">
 
-    <LinearLayout
+    <!-- Заголовок -->
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TitleText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginEnd="8dp"
+        android:gravity="left|center_vertical"
+        android:text="@string/title_payments_fragment"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/textView"
-            style="@style/TitleText"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:gravity="left|center_vertical"
-            android:text="@string/title_payments_fragment"
-            android:textSize="24sp" />
+    <!-- Табы -->
+    <LinearLayout
+        android:id="@+id/tab_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Вкладка "К оплате" -->
         <LinearLayout
-            android:id="@+id/tab_container"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:id="@+id/tab_to_pay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingVertical="8dp">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/tab_to_pay"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+            <TextView
+                android:id="@+id/text_to_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:text="к оплате"
+                android:textColor="@color/text_color_all"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/text_to_pay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="к оплате"
-                    android:textColor="@color/text_color_all"
-                    android:textSize="16sp"
-                    android:textStyle="normal" />
-
-                <View
-                    android:id="@+id/underline_to_pay"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@color/button_double_login_text" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/tab_history"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/text_history"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="история платежей"
-                    android:textColor="@color/text_color_all"
-                    android:textSize="16sp"
-                    android:textStyle="normal" />
-
-                <View
-                    android:id="@+id/underline_history"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@color/button_double_login_text"
-                    android:visibility="invisible" />
-            </LinearLayout>
+            <View
+                android:id="@+id/underline_to_pay"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/button_double_login_text" />
         </LinearLayout>
 
-        <!-- Списки -->
-        <ListView
-            android:id="@+id/listToPay"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <ListView
-            android:id="@+id/listHistory"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <!-- Вкладка "История платежей" -->
+        <LinearLayout
+            android:id="@+id/tab_history"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:visibility="gone" />
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <include
-            android:id="@+id/placeholder_pay"
-            layout="@layout/placeholder_payment_pay_fragment"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/text_history"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="история платежей"
+                android:textColor="@color/text_color_all"
+                android:textSize="16sp" />
 
-        <include
-            android:id="@+id/placeholder_history"
-            layout="@layout/placeholder_payment_history_fragment"
-            android:visibility="gone" />
-
+            <View
+                android:id="@+id/underline_history"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/button_double_login_text"
+                android:visibility="invisible" />
+        </LinearLayout>
     </LinearLayout>
 
+    <!-- ViewPager2 -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerPayments"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tab_container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"
+        android:overScrollMode="never"
+        tools:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

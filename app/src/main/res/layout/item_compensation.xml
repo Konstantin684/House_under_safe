@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -180,7 +179,7 @@
             android:backgroundTint="@color/backgroud_selector_button"
             android:text="@string/oform_strah"
             android:textColor="@color/text_color_button"
-            app:cornerRadius="5dp" />
+            card_view:cornerRadius="5dp" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

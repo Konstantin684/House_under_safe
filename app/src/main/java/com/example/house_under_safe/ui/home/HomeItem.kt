@@ -38,6 +38,33 @@ val mockHomeItems = listOf(
         adresRealEstate = "ул. Вторая, 22",
         validatyPeriod = "02.01.2024 - 02.01.2025",
         risks = listOf(RiskType.VANDALISM, RiskType.ROBBERY)
+    ),
+    HomeItem(
+        planResId = R.drawable.image_plan,
+        numberPolice = 165414321,
+        locationRegion = "Москва",
+        typeRealEstate = "Апартаменты",
+        adresRealEstate = "ул. Вишневая, 43",
+        validatyPeriod = "07.06.2024 - 07.06.2025",
+        risks = listOf(RiskType.FIRE, RiskType.FLOOD, RiskType.ELEMENT, RiskType.VANDALISM, RiskType.ROBBERY)
+    ),
+    HomeItem(
+        planResId = R.drawable.image_plan,
+        numberPolice = 161641984,
+        locationRegion = "Москва",
+        typeRealEstate = "Апартаменты",
+        adresRealEstate = "ул. Вишневая, 43",
+        validatyPeriod = "07.06.2024 - 07.06.2025",
+        risks = listOf(RiskType.FIRE, RiskType.FLOOD, RiskType.ELEMENT, RiskType.VANDALISM, RiskType.ROBBERY)
+    ),
+    HomeItem(
+        planResId = R.drawable.image_plan,
+        numberPolice = 984901921,
+        locationRegion = "Москва",
+        typeRealEstate = "Апартаменты",
+        adresRealEstate = "ул. Вишневая, 43",
+        validatyPeriod = "07.06.2024 - 07.06.2025",
+        risks = listOf(RiskType.FIRE, RiskType.FLOOD, RiskType.ELEMENT, RiskType.VANDALISM, RiskType.ROBBERY)
     )
 )
 
