@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    tools:context=".policy_design.third_step.ThirdStepFragment">
+
+    <TextView
+        android:id="@+id/title_first_step"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="left|center_vertical"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:text="Условия страхования"
+        android:textColor="@color/text_color_all"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Конструкция страхования, руб."
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/konstrukcia"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Отделка, руб. (необязательно)"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/otdelka"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <!-- Дата выдачи -->
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Техническое оборудование, руб. (необязательно)"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/tehnicheskoe_oborudovanie"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <!-- Код подразделения -->
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Движимое имущество, руб. (необязательно)"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/dvigimoe_imuchestvo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <!-- Серия и номер -->
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Гражданская ответственность, руб. (необязательно)"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/gragdanskaya_otvetstvennost"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Выберите страховые риски:"
+                android:textColor="@color/text_color_description" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Пожар, взрыв" />
+
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Стихийное бедствие" />
+
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Противоправные действия третьих лиц" />
+
+                <CheckBox
+                    android:id="@+id/checkBox5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Залив, повреждение водой" />
+
+                <CheckBox
+                    android:id="@+id/checkBox6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Кража со взломом, грабёж" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Выберите cрок страхования:"
+                android:textColor="@color/text_color_description" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="5"
+                    android:thumbTint="@color/button_active" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1 год"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="2dp"
+                android:text="Выберите частоту платежей:"
+                android:textColor="@color/text_color_description" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/radioButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Один раз" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ежемесячно" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ежеквартально" />
+
+                <RadioButton
+                    android:id="@+id/radioButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ежегодно" />
+            </RadioGroup>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp">
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:background="@drawable/btn_rounded_blue"
+                    android:maxWidth="130dp"
+                    android:maxHeight="55dp"
+                    android:minWidth="120dp"
+                    android:minHeight="50dp"
+                    android:src="@drawable/arrow_back_white" />
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/imageButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_rounded_blue"
+                    android:maxWidth="130dp"
+                    android:maxHeight="55dp"
+                    android:minWidth="120dp"
+                    android:minHeight="50dp"
+                    android:src="@drawable/arrow_forward_white" />
+
+            </TableRow>
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

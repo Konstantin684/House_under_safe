@@ -25,7 +25,7 @@ class CompensationFragment : Fragment() {
         _binding = FragmentCompensationBinding.inflate(inflater, container, false)
 
         val placeholder = binding.root.findViewById<View>(R.id.placeholder_empty_compensation)
-        val dummyList = mockHomeItems // или заполни фейковыми данными
+        val dummyList = mockHomeItems
 
         if (dummyList.isEmpty()) {
             binding.recyclerViewCompensation.visibility = View.GONE

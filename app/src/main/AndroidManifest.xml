@@ -16,6 +16,9 @@
         android:theme="@style/Theme.House_under_safe"
         tools:targetApi="31">
         <activity
+            android:name=".policy_design.DesignPolicyActivity"
+            android:exported="false" />
+        <activity
             android:name=".passport.PassportActivity"
             android:exported="false" />
         <activity

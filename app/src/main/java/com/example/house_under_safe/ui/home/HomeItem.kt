@@ -88,4 +88,4 @@ val mockHomeItems = listOf(
     )
 )
 
- //val mockHomeItems = listOf<HomeItem>()
+ //val mockHomeItems = listOf<HomeItemUiModel>()

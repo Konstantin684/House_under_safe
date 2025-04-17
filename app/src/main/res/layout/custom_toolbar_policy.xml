@@ -1,0 +1,31 @@
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/custom_toolbar_policy"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_marginTop="8dp"
+    android:elevation="4dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <ImageButton
+        android:id="@+id/btn_back_passport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Назад"
+        android:padding="7dp"
+        android:src="@drawable/arrow_back" />
+
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginStart="30dp"
+        android:gravity="left|center_vertical"
+        android:text="Оформление полиса"
+        android:textColor="@color/text_color_all"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+</androidx.appcompat.widget.Toolbar>

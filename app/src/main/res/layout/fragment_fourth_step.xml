@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    tools:context=".policy_design.fourth_step.FourthStepFragment">
+
+    <TextView
+        android:id="@+id/title_first_step"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="left|center_vertical"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:text="Данные о страхователе"
+        android:textColor="@color/text_color_all"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Фамилия Имя Отчество"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/region"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Паспорт выдан"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/passport_vydan"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <!-- Дата выдачи -->
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Дата выдачи"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/dataVydachi"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <!-- Код подразделения -->
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Код подразделения"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/kod_podrazdelenia"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <!-- Серия и номер -->
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Серия и номер"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/seria_i_nomer"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <!-- Фамилия -->
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Фамилия"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/familia"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <!-- Имя -->
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Имя"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/imy"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <!-- Отчество -->
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Отчество"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/otchestvo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <!-- Дата рождения -->
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Дата рождения"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/data_rojdenia"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <!-- Место рождения -->
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Место рождения"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/mesto_rojdenia"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Адрес регистрации"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/adres_registracii"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Адрес проживания"
+                android:textColor="@color/text_color_description" />
+
+            <EditText
+                android:id="@+id/adres_projivania"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background_selector"
+                android:enabled="false"
+                android:hint="@string/add_data"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textColor="@color/text_color_all" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp">
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:background="@drawable/btn_rounded_blue"
+                    android:maxWidth="130dp"
+                    android:maxHeight="55dp"
+                    android:minWidth="120dp"
+                    android:minHeight="50dp"
+                    android:src="@drawable/arrow_back_white" />
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/imageButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_rounded_blue"
+                    android:maxWidth="130dp"
+                    android:maxHeight="55dp"
+                    android:minWidth="120dp"
+                    android:minHeight="50dp"
+                    android:src="@drawable/arrow_forward_white" />
+
+            </TableRow>
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
