@@ -10,8 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.house_under_safe.R
 import com.example.house_under_safe.databinding.FragmentCompensationBinding
-import com.example.house_under_safe.ui.home.HomeItem
-import com.example.house_under_safe.ui.home.RiskType
 import com.example.house_under_safe.ui.home.mockHomeItems
 
 class CompensationFragment : Fragment() {

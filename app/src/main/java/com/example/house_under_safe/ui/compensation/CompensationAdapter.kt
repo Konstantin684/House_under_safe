@@ -8,12 +8,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.house_under_safe.R
+import com.example.house_under_safe.ui.home.HomeItemUiModel
 
-import com.example.house_under_safe.ui.home.HomeItem
-import com.example.house_under_safe.ui.home.RiskType
 
 class CompensationAdapter (
-    private val items: List<HomeItem>
+    private val items: List<HomeItemUiModel>
 ) : RecyclerView.Adapter<CompensationAdapter.CompensationViewHolder>() {
 
     inner class CompensationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -35,11 +34,11 @@ class CompensationAdapter (
     override fun onBindViewHolder(holder: CompensationViewHolder, position: Int) {
         val item = items[position]
 
-        holder.numberPolice.text = item.numberPolice.toString()
-        holder.region.text = item.locationRegion
-        holder.typeRealEstate.text = item.typeRealEstate
-        holder.adres.text = item.adresRealEstate
-        holder.period.text = item.validatyPeriod
+        holder.numberPolice.text = item.policyNumber
+        holder.region.text = item.region
+        holder.typeRealEstate.text = item.propertyType.label
+        holder.adres.text = item.address
+        holder.period.text = item.period
         holder.plan.setImageResource(item.planResId)
 
         holder.risksContainer.removeAllViews()
