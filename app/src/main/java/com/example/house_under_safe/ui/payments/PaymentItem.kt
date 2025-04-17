@@ -17,7 +17,8 @@ enum class PaymentStatus {
 
 //тестовые данные для обоих вкладок
  val mockPaymentItems = listOf(
-    PaymentItem("001", "Полис №123456", "1 200 ₽", null, PaymentStatus.AWAITING)
+    PaymentItem("00000001", "Полис №1234567890", "1 200 ₽", null, PaymentStatus.AWAITING),
+    PaymentItem("00000002", "Полис №9876543210", "2 500 ₽", null, PaymentStatus.AWAITING)
 )
 
 

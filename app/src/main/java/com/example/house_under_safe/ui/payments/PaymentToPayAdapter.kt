@@ -13,12 +13,13 @@ import com.example.house_under_safe.R
 
 class PaymentToPayAdapter(
     private val items: MutableList<PaymentItem>,
-    private val viewModel: PaymentsViewModel
+    private val viewModel: PaymentsViewModel,
+    private val listener: OnPaymentClickListener
 ) : RecyclerView.Adapter<PaymentToPayAdapter.PaymentToPayViewHolder>() {
 
     // Храним время начала таймера для каждой позиции
     private val startTimes = mutableMapOf<String, Long>()
-    private val timerDuration = 1 * 60 * 1000L // 15 минут в миллисекундах
+    private val timerDuration = 15 * 60 * 1000L // 15 минут в миллисекундах
 
     inner class PaymentToPayViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val paymentNumber: TextView = view.findViewById(R.id.payment_number)
@@ -40,8 +41,10 @@ class PaymentToPayAdapter(
         val item = items[position]
         val context = holder.itemView.context
 
+        holder.btnPay.setOnClickListener {
+            listener.onPayClicked(item) // делегируем обработку наружу
+        }
         holder.countDownTimer?.cancel()
-
         holder.paymentNumber.text = "СЧЕТ № ${item.number}"
         holder.paymentPolicy.text = item.policy
         holder.paymentAmount.text = item.amount
@@ -124,3 +127,7 @@ class PaymentToPayAdapter(
         return formatter.format(java.util.Date())
     }
 }
+interface OnPaymentClickListener {
+    fun onPayClicked(paymentItem: PaymentItem)
+}
+

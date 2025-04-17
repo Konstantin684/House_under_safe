@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -12,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.house_under_safe.R
 import com.example.house_under_safe.ui.payments.*
 
-class PaymentsToPayFragment : Fragment() {
+class PaymentsToPayFragment : Fragment(), OnPaymentClickListener {
 
     private val viewModel: PaymentsViewModel by activityViewModels()
 
@@ -25,7 +26,7 @@ class PaymentsToPayFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerToPay)
         placeholder = view.findViewById(R.id.placeholder_pay)
 
-        adapter = PaymentToPayAdapter(mutableListOf(), viewModel)
+        adapter = PaymentToPayAdapter(mutableListOf(), viewModel, this)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
@@ -34,6 +35,16 @@ class PaymentsToPayFragment : Fragment() {
         return view
     }
 
+    override fun onPayClicked(paymentItem: PaymentItem) {
+        // Например, просто обновляем статус на "Оплачен" с текущей датой
+        val updated = paymentItem.copy(
+            status = PaymentStatus.PAID,
+            datetime = getCurrentDateTimeString()
+        )
+        viewModel.updatePayment(updated)
+
+        Toast.makeText(requireContext(), "Оплата выполнена по счёту № ${paymentItem.number}", Toast.LENGTH_SHORT).show()
+    }
 
     private fun observePayments() {
         viewModel.payments.observe(viewLifecycleOwner, Observer { payments ->
@@ -44,4 +55,11 @@ class PaymentsToPayFragment : Fragment() {
             recyclerView.visibility = if (toPayItems.isEmpty()) View.GONE else View.VISIBLE
         })
     }
+
+    private fun getCurrentDateTimeString(): String {
+        val formatter = java.text.SimpleDateFormat("dd.MM.yyyy HH:mm", java.util.Locale.getDefault())
+        return formatter.format(java.util.Date())
+    }
 }
+
+
