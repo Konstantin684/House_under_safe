@@ -3,26 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/firstStepFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.house_under_safe.policy_design.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first" >
-
+        android:id="@+id/firstStepFragment"
+        android:name="com.example.house_under_safe.policy_design.step_1.FirstStepFragment"
+        android:label="fragment_first_step"
+        tools:layout="@layout/fragment_first_step" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_firstStepFragment_to_secondStepFragment"
+            app:destination="@id/secondStepFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.house_under_safe.policy_design.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second" >
-
+        android:id="@+id/secondStepFragment"
+        android:name="com.example.house_under_safe.policy_design.step_2.SecondStepFragment"
+        android:label="fragment_second_step"
+        tools:layout="@layout/fragment_second_step" >
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_secondStepFragment_to_thirdStepFragment"
+            app:destination="@id/thirdStepFragment" />
+        <action
+            android:id="@+id/action_secondStepFragment_to_firstStepFragment"
+            app:destination="@id/firstStepFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdStepFragment"
+        android:name="com.example.house_under_safe.policy_design.step_3.ThirdStepFragment"
+        android:label="fragment_third_step"
+        tools:layout="@layout/fragment_third_step" >
+        <action
+            android:id="@+id/action_thirdStepFragment_to_fourthStepFragment"
+            app:destination="@id/fourthStepFragment" />
+        <action
+            android:id="@+id/action_thirdStepFragment_to_secondStepFragment2"
+            app:destination="@id/secondStepFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fiveStepFragment"
+        android:name="com.example.house_under_safe.policy_design.step_5.FiveStepFragment"
+        android:label="fragment_five_step"
+        tools:layout="@layout/fragment_five_step" >
+        <action
+            android:id="@+id/action_fiveStepFragment_to_fourthStepFragment"
+            app:destination="@id/fourthStepFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fourthStepFragment"
+        android:name="com.example.house_under_safe.policy_design.fourth_step.FourthStepFragment"
+        android:label="FourthStepFragment" >
+        <action
+            android:id="@+id/action_fourthStepFragment_to_fiveStepFragment"
+            app:destination="@id/fiveStepFragment" />
+        <action
+            android:id="@+id/action_fourthStepFragment_to_thirdStepFragment"
+            app:destination="@id/thirdStepFragment" />
     </fragment>
 </navigation>

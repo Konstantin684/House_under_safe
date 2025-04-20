@@ -21,6 +21,7 @@
 
 
     <include
+        android:id="@+id/placeholder_home_fragment"
         layout="@layout/placeholder_home_fragment"
         android:visibility="invisible" />
 

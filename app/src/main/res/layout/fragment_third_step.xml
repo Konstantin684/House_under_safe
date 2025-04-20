@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
-    tools:context=".policy_design.third_step.ThirdStepFragment">
+    tools:context=".policy_design.step_3.ThirdStepFragment">
 
     <TextView
         android:id="@+id/title_first_step"
@@ -26,7 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:paddingBottom="100dp"
         android:clipToPadding="false">
 
         <LinearLayout
@@ -49,7 +48,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/add_data"
                 android:inputType="date"
                 android:padding="5dp"
@@ -70,7 +69,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/add_data"
                 android:inputType="text"
                 android:padding="5dp"
@@ -93,7 +92,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/add_data"
                 android:inputType="date"
                 android:padding="5dp"
@@ -116,7 +115,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/add_data"
                 android:inputType="text"
                 android:padding="5dp"
@@ -139,7 +138,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/add_data"
                 android:inputType="text"
                 android:padding="5dp"
@@ -164,30 +163,35 @@
                     android:id="@+id/checkBox2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:buttonTint="@color/blue_radio_color"
                     android:text="Пожар, взрыв" />
 
                 <CheckBox
                     android:id="@+id/checkBox3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:buttonTint="@color/blue_radio_color"
                     android:text="Стихийное бедствие" />
 
                 <CheckBox
                     android:id="@+id/checkBox4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:buttonTint="@color/blue_radio_color"
                     android:text="Противоправные действия третьих лиц" />
 
                 <CheckBox
                     android:id="@+id/checkBox5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:buttonTint="@color/blue_radio_color"
                     android:text="Залив, повреждение водой" />
 
                 <CheckBox
                     android:id="@+id/checkBox6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:buttonTint="@color/blue_radio_color"
                     android:text="Кража со взломом, грабёж" />
             </LinearLayout>
 
@@ -235,6 +239,7 @@
                 android:textColor="@color/text_color_description" />
 
             <RadioGroup
+                android:id="@+id/radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -243,24 +248,28 @@
                     android:id="@+id/radioButton1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:buttonTint="@color/blue_radio_color"
                     android:text="Один раз" />
 
                 <RadioButton
                     android:id="@+id/radioButton2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:buttonTint="@color/blue_radio_color"
                     android:text="Ежемесячно" />
 
                 <RadioButton
                     android:id="@+id/radioButton3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:buttonTint="@color/blue_radio_color"
                     android:text="Ежеквартально" />
 
                 <RadioButton
                     android:id="@+id/radioButton4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:buttonTint="@color/blue_radio_color"
                     android:text="Ежегодно" />
             </RadioGroup>
 
@@ -299,13 +308,6 @@
                     android:src="@drawable/arrow_forward_white" />
 
             </TableRow>
-
-            <View
-                android:id="@+id/view6"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
-
         </LinearLayout>
     </ScrollView>
-
 </FrameLayout>

@@ -7,8 +7,6 @@ data class PolicyDocument(
 )
 
 enum class DocumentType {
-    POLICY_PDF,       // Страховой полис в формате PDF
-    PHOTO,            // Фотография объекта недвижимости
-    EXPERT_REPORT,    // Отчёт эксперта (оценка, осмотр и т.п.)
-    OTHER             // Прочие документы
+    POLICY_PDF,         // Страховой полис в формате PDF
+    PHOTO               // Фотография объекта недвижимости
 }

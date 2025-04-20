@@ -8,7 +8,6 @@ data class InsurancePolicy(
     val startDate: String,                 // Дата начала действия
     val endDate: String,                   // Дата окончания действия
     val status: PolicyStatus,              // Статус полиса (активен, истек и т.д.)
-    val insuranceType: InsuranceType,      // Тип страхования
     val insurer: InsurerInfo,              // Данные страхователя
     val property: PropertyInfo,            // Данные о недвижимости
     val conditions: InsuranceConditions,   // Условия страхования
@@ -20,20 +19,30 @@ data class InsurancePolicy(
 enum class PolicyStatus {
     ACTIVE,     // активный
     EXPIRED,    // срок действия истёк
-    SUSPENDED,  // временно приостановлен
-    CANCELLED   // отменён
 }
 
-enum class InsuranceType {
-    PROPERTY,   // имущество
-    MORTGAGE,   // ипотека
-    TITLE       // право собственности
+enum class InsuranceRisk(val label: String) {
+    FIRE("пожар"),
+    FLOOD("залив"),
+    ELEMENT("стихийное бедствие"),
+    VANDALISM("вандализм"),
+    ROBBERY("грабеж")
 }
 
-enum class InsuranceRisk (val label: String, val iconRes: Int) {
-    FIRE("пожар", R.drawable.fire),
-    FLOOD("залив", R.drawable.water),
-    ELEMENT("стихийное\nбедствие", R.drawable.stihia),
-    VANDALISM("вандализм", R.drawable.vandalism),
-    ROBBERY("грабеж", R.drawable.grabej)
+data class InsuranceConditions(
+    val constructionCost: Double,                 // Конструкция страхования, руб.
+    val finishingCost: Double?,                   // Отделка, руб. (необязательно)
+    val equipmentCost: Double?,                   // Техническое оборудование, руб. (необязательно)
+    val movablePropertyCost: Double?,             // Движимое имущество, руб. (необязательно)
+    val civilLiabilityCost: Double?,              // Гражданская ответственность, руб. (необязательно)
+    val risks: List<InsuranceRisk>,               // Страховые риски (выбранные)
+    val insuranceTermInYears: Int,                // Срок страхования в годах (с SeekBar)
+    val paymentFrequency: PaymentFrequency        // Частота платежей (RadioGroup)
+)
+
+enum class PaymentFrequency (val label: String){
+    ONE_TIME("Один раз"),
+    MONTHLY("Ежемесячно"),
+    QUARTERLY("Ежеквартально"),
+    YEARLY("Ежегодно")
 }

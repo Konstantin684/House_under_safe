@@ -1,5 +1,6 @@
 package com.example.house_under_safe.ui.management
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.house_under_safe.R
 import com.example.house_under_safe.databinding.FragmentManagementBinding
+import com.example.house_under_safe.model.PropertyType
+import com.example.house_under_safe.policy_design.DesignPolicyActivity
 
 class ManagementFragment : Fragment() {
 
@@ -25,13 +28,52 @@ class ManagementFragment : Fragment() {
         listView = view.findViewById(R.id.management_list)
 
         val items = listOf(
-            ManagementItem(R.drawable.gor_jil_ned, "Городская жилая недвижимость", "Оформить страховой полис для городской жилой недвижимости (квартира, комната в коммунальной квартире)"),
-            ManagementItem(R.drawable.zagor_jil_ned, "Загородная жилая недвижимость", "Оформить страховой полис для загородной жилой недвижимости (дачные дома с возможностью регистрации, жилые дома)"),
-            ManagementItem(R.drawable.gor_nejil_ned, "Городская нежилая недвижимость", "Оформить страховой полис для городской нежилой недвижимости (апартаменты)"),
-            ManagementItem(R.drawable.komer_ned, "Комерческая недвижимость", "Оформить страховой полис для коммерческой недвижимости (склады, офисные помещения, гостиницы, отели, мотели, торговые помещения)"),
-            ManagementItem(R.drawable.prom_ned, "Промышленная недвижимость", "Оформить страховой полис для промышленной недвижимости (промышленные сооружения, работающие заводы, фабрики)"),
-            ManagementItem(R.drawable.prodl_polis, "Продление полиса", "Продлить срок действия уже оформленного страхового полиса на недвижимость")
+            ManagementItem(
+                R.drawable.gor_jil_ned,
+                "Городская жилая недвижимость",
+                "Оформить страховой полис для городской жилой недвижимости (квартира, комната в коммунальной квартире)",
+                PropertyType.CityResidential
+            ),
+            ManagementItem(
+                R.drawable.zagor_jil_ned,
+                "Загородная жилая недвижимость",
+                "Оформить страховой полис для загородной жилой недвижимости (дачные дома, жилые дома)",
+                PropertyType.CountryResidential
+            ),
+            ManagementItem(
+                R.drawable.gor_nejil_ned,
+                "Городская нежилая недвижимость",
+                "Оформить страховой полис для городской нежилой недвижимости (апартаменты)",
+                PropertyType.CountryNotResidential
+            ),
+            ManagementItem(
+                R.drawable.komer_ned,
+                "Коммерческая недвижимость",
+                "Оформить страховой полис для коммерческой недвижимости (склады, гостиницы и т.п.)",
+                PropertyType.Commercial
+            ),
+            ManagementItem(
+                R.drawable.prom_ned,
+                "Промышленная недвижимость",
+                "Оформить страховой полис для промышленной недвижимости (заводы, фабрики и т.п.)",
+                PropertyType.Industrial
+            ),
+            ManagementItem(
+                R.drawable.prodl_polis,
+                "Продление полиса",
+                "Продлить срок действия уже оформленного страхового полиса на недвижимость",
+                PropertyType.ProdleniePolisa
+            )
         )
+
+        listView.setOnItemClickListener { _, _, position, _ ->
+            val selectedItem = items[position]
+
+            val intent = Intent(requireContext(), DesignPolicyActivity::class.java).apply {
+                putExtra("property_type", selectedItem.propertyType::class.simpleName)
+            }
+            startActivity(intent)
+        }
 
         adapter = ManagementAdapter(requireContext(), items)
         listView.adapter = adapter

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
-    tools:context=".policy_design.first_step.FirstStepFragment">
+    tools:context=".policy_design.step_1.FirstStepFragment">
 
 
     <TextView
@@ -48,7 +48,10 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/text_color_all"
                 android:background="@color/back_edittext"
+                android:enabled="true"
+                android:clickable="true"
                 android:spinnerMode="dropdown" />
 
 
@@ -67,9 +70,9 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/add_data"
-                android:inputType="date"
+                android:inputType="text"
                 android:padding="5dp"
                 android:textColor="@color/text_color_all" />
 
@@ -88,9 +91,9 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/add_data"
-                android:inputType="date"
+                android:inputType="text"
                 android:padding="5dp"
                 android:textColor="@color/text_color_all" />
 
@@ -109,9 +112,9 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/add_data"
-                android:inputType="date"
+                android:inputType="text"
                 android:padding="5dp"
                 android:textColor="@color/text_color_all" />
 
@@ -130,9 +133,9 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/add_data"
-                android:inputType="date"
+                android:inputType="text"
                 android:padding="5dp"
                 android:textColor="@color/text_color_all" />
 
@@ -151,9 +154,9 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/add_data"
-                android:inputType="date"
+                android:inputType="text"
                 android:padding="5dp"
                 android:textColor="@color/text_color_all" />
 
@@ -172,9 +175,9 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/add_data"
-                android:inputType="date"
+                android:inputType="text"
                 android:padding="5dp"
                 android:textColor="@color/text_color_all" />
 
@@ -193,9 +196,9 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
+                android:enabled="true"
                 android:hint="@string/add_data"
-                android:inputType="date"
+                android:inputType="text"
                 android:padding="5dp"
                 android:textColor="@color/text_color_all" />
 

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
-    tools:context=".policy_design.fourth_step.FourthStepFragment">
+    tools:context=".policy_design.step_4.FourthStepFragment">
 
     <TextView
         android:id="@+id/title_first_step"
@@ -16,17 +17,17 @@
         android:gravity="left|center_vertical"
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
-        android:text="Данные о страхователе"
+        android:text="Загрузка документов"
         android:textColor="@color/text_color_all"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="50dp"
-        android:paddingBottom="100dp"
-        android:clipToPadding="false">
+        android:clipToPadding="false"
+        android:paddingBottom="100dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,268 +39,67 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Фамилия Имя Отчество"
-                android:textColor="@color/text_color_description" />
-
-            <EditText
-                android:id="@+id/region"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
-                android:hint="@string/add_data"
-                android:inputType="date"
-                android:padding="5dp"
-                android:textColor="@color/text_color_all" />
+                android:text="Прикрепите фотографии недвижимости:"
+                android:textColor="@color/text_color_description" />
+
+            <!-- fragment_or_activity_layout.xml -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/cardContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/card_color"
+                        app:cardCornerRadius="5dp">
+
+                        <ImageView
+                            android:id="@+id/imageView9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="20dp"
+                            android:src="@drawable/add_circle" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/textView31"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="Паспорт выдан"
-                android:textColor="@color/text_color_description" />
-
-            <EditText
-                android:id="@+id/passport_vydan"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
-                android:hint="@string/add_data"
-                android:inputType="text"
-                android:padding="5dp"
-                android:textColor="@color/text_color_all" />
+                android:text="Прикрипите документ подтверждающий право собственности или договор аренды(только в формате .PDF):"
+                android:textColor="@color/text_color_description" />
 
-            <!-- Дата выдачи -->
-
-            <TextView
-                android:id="@+id/textView16"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="Дата выдачи"
-                android:textColor="@color/text_color_description" />
+                app:cardBackgroundColor="@color/card_color"
+                app:cardCornerRadius="5dp">
 
-            <EditText
-                android:id="@+id/dataVydachi"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
-                android:hint="@string/add_data"
-                android:inputType="date"
-                android:padding="5dp"
-                android:textColor="@color/text_color_all" />
-
-            <!-- Код подразделения -->
-
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="Код подразделения"
-                android:textColor="@color/text_color_description" />
-
-            <EditText
-                android:id="@+id/kod_podrazdelenia"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
-                android:hint="@string/add_data"
-                android:inputType="text"
-                android:padding="5dp"
-                android:textColor="@color/text_color_all" />
-
-            <!-- Серия и номер -->
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="Серия и номер"
-                android:textColor="@color/text_color_description" />
-
-            <EditText
-                android:id="@+id/seria_i_nomer"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
-                android:hint="@string/add_data"
-                android:inputType="text"
-                android:padding="5dp"
-                android:textColor="@color/text_color_all" />
-
-            <!-- Фамилия -->
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="Фамилия"
-                android:textColor="@color/text_color_description" />
-
-            <EditText
-                android:id="@+id/familia"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
-                android:hint="@string/add_data"
-                android:inputType="text"
-                android:padding="5dp"
-                android:textColor="@color/text_color_all" />
-
-            <!-- Имя -->
-
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="Имя"
-                android:textColor="@color/text_color_description" />
-
-            <EditText
-                android:id="@+id/imy"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
-                android:hint="@string/add_data"
-                android:inputType="text"
-                android:padding="5dp"
-                android:textColor="@color/text_color_all" />
-
-            <!-- Отчество -->
-
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="Отчество"
-                android:textColor="@color/text_color_description" />
-
-            <EditText
-                android:id="@+id/otchestvo"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
-                android:hint="@string/add_data"
-                android:inputType="text"
-                android:padding="5dp"
-                android:textColor="@color/text_color_all" />
-
-            <!-- Дата рождения -->
-
-            <TextView
-                android:id="@+id/textView22"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="Дата рождения"
-                android:textColor="@color/text_color_description" />
-
-            <EditText
-                android:id="@+id/data_rojdenia"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
-                android:hint="@string/add_data"
-                android:inputType="date"
-                android:padding="5dp"
-                android:textColor="@color/text_color_all" />
-
-            <!-- Место рождения -->
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="Место рождения"
-                android:textColor="@color/text_color_description" />
-
-            <EditText
-                android:id="@+id/mesto_rojdenia"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
-                android:hint="@string/add_data"
-                android:inputType="date"
-                android:padding="5dp"
-                android:textColor="@color/text_color_all" />
-
-            <TextView
-                android:id="@+id/textView25"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="Адрес регистрации"
-                android:textColor="@color/text_color_description" />
-
-            <EditText
-                android:id="@+id/adres_registracii"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
-                android:hint="@string/add_data"
-                android:inputType="date"
-                android:padding="5dp"
-                android:textColor="@color/text_color_all" />
-
-            <TextView
-                android:id="@+id/textView26"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="Адрес проживания"
-                android:textColor="@color/text_color_description" />
-
-            <EditText
-                android:id="@+id/adres_projivania"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_background_selector"
-                android:enabled="false"
-                android:hint="@string/add_data"
-                android:inputType="date"
-                android:padding="5dp"
-                android:textColor="@color/text_color_all" />
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="20dp"
+                    android:src="@drawable/add_circle" />
+            </androidx.cardview.widget.CardView>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -336,13 +136,6 @@
                     android:src="@drawable/arrow_forward_white" />
 
             </TableRow>
-
-            <View
-                android:id="@+id/view6"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
-
         </LinearLayout>
     </ScrollView>
-
 </FrameLayout>
