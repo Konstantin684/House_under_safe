@@ -8,6 +8,7 @@ import com.example.house_under_safe.model.InsuranceConditions
 import com.example.house_under_safe.model.InsurerInfo
 import com.example.house_under_safe.model.PolicyDocument
 import com.example.house_under_safe.model.PropertyInfo
+import com.example.house_under_safe.model.PropertySubtype
 import com.example.house_under_safe.model.PropertyType
 
 class PolicyDesignViewModel : ViewModel() {
@@ -17,7 +18,7 @@ class PolicyDesignViewModel : ViewModel() {
     val documents = MutableLiveData<List<PolicyDocument>>(emptyList())
 
     val selectedPropertyType = MutableLiveData<PropertyType?>()
-    val selectedSubtype = MutableLiveData<Enum<*>?>()
+    val selectedSubtype = MutableLiveData<PropertySubtype?>() // ✅ новый тип
     val selectedSubtypeIndex = MutableLiveData<Int?>()
 
     val policyNumber = MutableLiveData<String>()

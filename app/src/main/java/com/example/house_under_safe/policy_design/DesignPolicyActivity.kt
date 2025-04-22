@@ -13,12 +13,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.house_under_safe.R
 import com.example.house_under_safe.model.PropertyType
-import com.example.house_under_safe.ui.MainSharedViewModel
 
 class DesignPolicyActivity : AppCompatActivity() {
 
     private lateinit var viewModel: PolicyDesignViewModel
-    private lateinit var sharedViewModel: MainSharedViewModel  // ← добавляем сюда
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,14 +29,7 @@ class DesignPolicyActivity : AppCompatActivity() {
             insets
         }
 
-        // ← инициализация PolicyDesignViewModel
         viewModel = ViewModelProvider(this)[PolicyDesignViewModel::class.java]
-
-        // ✅ ИНИЦИАЛИЗАЦИЯ shared ViewModel (MainSharedViewModel)
-        sharedViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        )[MainSharedViewModel::class.java]
 
         // Назначаем тип недвижимости из Intent
         val typeName = intent.getStringExtra("property_type")
@@ -82,7 +73,7 @@ class DesignPolicyActivity : AppCompatActivity() {
 
         Log.d("Draft", "Сохраняем черновик: $property $insurer $conditions")
 
-        // Здесь можно расширить: сохранить в SharedPreferences, Room, или отправить на сервер
+        // Здесь можно сохранить во временное хранилище, если нужно
     }
 
     fun updateProgress(step: Int, totalSteps: Int = 5) {

@@ -1,24 +1,30 @@
 package com.example.house_under_safe.ui.home
 
+import kotlinx.parcelize.Parcelize
+import android.os.Parcelable
 import com.example.house_under_safe.R
 import com.example.house_under_safe.model.InsuranceRisk
+import com.example.house_under_safe.model.PropertySubtype
 import com.example.house_under_safe.model.PropertyType
 
+@Parcelize
 data class HomeItemUiModel(
-    val planResId: Int,                        // ID ресурса плана (иконки/изображения)
-    val policyNumber: String,                  // Номер полиса
-    val region: String,                        // Регион расположения
-    val propertyType: PropertyType,            // Тип недвижимости (используем enum))
-    val subtype: Enum<*>,                      // Подтип недвижимости
-    val address: String,                       // Адрес недвижимости
-    val period: String,                        // Срок действия, например: "01.01.2024 – 01.01.2025"
-    val risks: List<InsuranceRiskUi>           // Список рисков из enum
-)
+    val planResId: Int,
+    val policyNumber: String,
+    val region: String,
+    val propertyType: PropertyType,
+    val subtype: PropertySubtype,  // ✅ Теперь это корректный тип
+    val address: String,
+    val period: String,
+    val risks: List<InsuranceRiskUi>
+) : Parcelable
 
+
+@Parcelize
 data class InsuranceRiskUi(
     val risk: InsuranceRisk,
     val iconRes: Int
-)
+) : Parcelable
 
 val insuranceRiskIcons = mapOf(
     InsuranceRisk.FIRE to R.drawable.fire,
@@ -28,7 +34,6 @@ val insuranceRiskIcons = mapOf(
     InsuranceRisk.ROBBERY to R.drawable.grabej
 )
 
-// Для отображения
 fun List<InsuranceRisk>.toUiList(): List<InsuranceRiskUi> =
     map { InsuranceRiskUi(it, insuranceRiskIcons[it] ?: R.drawable.unchecked_profile) }
 
@@ -77,11 +82,4 @@ val mockHomeItems = listOf(
             InsuranceRisk.ROBBERY
         ).toUiList()
     )
-    // и т.д.
 )
-
-
-
-
-
- //val mockHomeItems = listOf<HomeItemUiModel>()

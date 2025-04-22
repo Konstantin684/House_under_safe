@@ -6,25 +6,27 @@ import android.graphics.pdf.PdfRenderer
 import android.net.Uri
 import android.os.Bundle
 import android.os.ParcelFileDescriptor
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.house_under_safe.MainActivity
+import com.example.house_under_safe.PolicyStorageHelper
 import com.example.house_under_safe.R
-import com.example.house_under_safe.main.MainViewModel
 import com.example.house_under_safe.model.DocumentType
+import com.example.house_under_safe.model.InsurancePolicy
+import com.example.house_under_safe.model.PolicyStatus
+import com.example.house_under_safe.model.PropertySubtype
 import com.example.house_under_safe.model.PropertyType
 import com.example.house_under_safe.policy_design.DesignPolicyActivity
 import com.example.house_under_safe.policy_design.PolicyDesignViewModel
-import com.example.house_under_safe.ui.MainSharedViewModel
 import com.example.house_under_safe.ui.home.HomeItemUiModel
 import com.example.house_under_safe.ui.home.InsuranceRiskUi
 import com.example.house_under_safe.ui.home.insuranceRiskIcons
 import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
+import java.util.*
 
 class FiveStepFragment : Fragment(R.layout.fragment_five_step) {
 
@@ -32,6 +34,7 @@ class FiveStepFragment : Fragment(R.layout.fragment_five_step) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel = ViewModelProvider(requireActivity())[PolicyDesignViewModel::class.java]
 
         val property = viewModel.propertyInfo.value
@@ -40,13 +43,10 @@ class FiveStepFragment : Fragment(R.layout.fragment_five_step) {
         val documents = viewModel.documents.value ?: emptyList()
 
         // === 1. Данные о недвижимости ===
-        view.findViewById<TextView>(R.id.type_nedvij).text =
-            property?.propertyType?.javaClass?.simpleName.orEmpty()
-
+        view.findViewById<TextView>(R.id.type_nedvij).text = property?.propertyType?.javaClass?.simpleName.orEmpty()
         view.findViewById<TextView>(R.id.region_city).text = property?.region.orEmpty()
         view.findViewById<TextView>(R.id.adress_nedvij).text = property?.address.orEmpty()
         view.findViewById<TextView>(R.id.plochad_nedvij).text = property?.totalArea?.toString().orEmpty()
-
         updateField(view, R.id.kol_etaj, R.id.textView27, property?.floorsTotal)
         updateField(view, R.id.etaj, R.id.textView28, property?.floor)
         updateField(view, R.id.god_postroiki, R.id.textView29, property?.yearBuilt)
@@ -72,9 +72,8 @@ class FiveStepFragment : Fragment(R.layout.fragment_five_step) {
             updateField(view, R.id.technik_oborudovanie, R.id.textView47, it.equipmentCost)
             updateField(view, R.id.dvijimoe_imuchestvo, R.id.textView48, it.movablePropertyCost)
             updateField(view, R.id.grajdan_otvetstvennost, R.id.textView49, it.civilLiabilityCost)
-
             view.findViewById<TextView>(R.id.strah_risk).text =
-                it.risks.joinToString(", ") { risk -> risk.label }
+                it.risks.joinToString(", ") { r -> r.label }
             view.findViewById<TextView>(R.id.srok_strah).text =
                 "${it.insuranceTermInYears} ${getYearEnding(it.insuranceTermInYears)}"
             view.findViewById<TextView>(R.id.chastota_payment).text = it.paymentFrequency.label
@@ -95,72 +94,86 @@ class FiveStepFragment : Fragment(R.layout.fragment_five_step) {
             container.addView(image)
         }
 
-        documents.find { it.type == DocumentType.POLICY_PDF }?.let { pdf ->
-            renderPdfPreview(Uri.parse(pdf.url), pdfImage)
+        documents.find { it.type == DocumentType.POLICY_PDF }?.let {
+            renderPdfPreview(Uri.parse(it.url), pdfImage)
         }
 
-        // === Обработка кнопок ===
+        // === Кнопка "Назад" ===
         view.findViewById<ImageButton>(R.id.imageButton3).setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
             (requireActivity() as? DesignPolicyActivity)?.updateProgress(3)
         }
 
+        // === Кнопка "Подтвердить" ===
         view.findViewById<Button>(R.id.button).setOnClickListener {
-            val property = viewModel.propertyInfo.value
-            val conditions = viewModel.insuranceConditions.value
+            if (property != null && conditions != null && insurer != null) {
 
-            if (property != null && conditions != null) {
-                val calendar = Calendar.getInstance()
                 val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-                val startDate = dateFormat.format(calendar.time)
-
-                calendar.add(Calendar.YEAR, conditions.insuranceTermInYears)
-                val endDate = dateFormat.format(calendar.time)
-
-                val period = "$startDate – $endDate"
-
-                val riskUiList = conditions.risks.map {
-                    InsuranceRiskUi(
-                        risk = it,
-                        iconRes = insuranceRiskIcons[it] ?: R.drawable.unchecked_profile
-                    )
+                val issueDate = dateFormat.format(Date())
+                val startDate = issueDate
+                val endCalendar = Calendar.getInstance().apply {
+                    time = dateFormat.parse(issueDate) ?: Date()
+                    add(Calendar.YEAR, conditions.insuranceTermInYears)
                 }
+                val endDate = dateFormat.format(endCalendar.time)
 
-                val planResId = getPlanIconRes(property.propertyType)
                 val policyNumber = generatePolicyNumber(property.propertyType)
 
-                val homeItem = HomeItemUiModel(
-                    planResId = planResId,
+                val insurancePolicy = InsurancePolicy(
                     policyNumber = policyNumber,
-                    region = property.region,
-                    propertyType = property.propertyType,
-                    subtype = property.subCategory, // либо переименуй в `subtype`
-                    address = property.address,
-                    period = period,
-                    risks = riskUiList
+                    issueDate = issueDate,
+                    startDate = startDate,
+                    endDate = endDate,
+                    status = PolicyStatus.ACTIVE,
+                    insurer = insurer,
+                    property = property,
+                    conditions = conditions,
+                    risks = conditions.risks,
+                    documents = documents,
+                    payments = emptyList()
                 )
 
-                val sharedViewModel = ViewModelProvider(
-                    requireActivity(),
-                    ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-                )[MainSharedViewModel::class.java]
+                // ⬇️ Сохраняем полноценную модель
+                PolicyStorageHelper.saveFullPolicy(requireContext(), insurancePolicy)
 
-                sharedViewModel.addPolicy(homeItem)
-
-                Toast.makeText(requireContext(), "Полис отправлен!", Toast.LENGTH_SHORT).show()
+                Log.d("FiveStepFragment", "Полис сохранён: $insurancePolicy")
+                Toast.makeText(requireContext(), "Полис успешно сохранён!", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(requireContext(), MainActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
                 }
                 startActivity(intent)
             } else {
-                Toast.makeText(requireContext(), "Ошибка: неполные данные", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Ошибка: данные не собраны", Toast.LENGTH_SHORT).show()
             }
         }
 
 
-
         (requireActivity() as? DesignPolicyActivity)?.updateProgress(5)
+    }
+
+    private fun getPlanIconRes(propertyType: PropertyType): Int {
+        return when (propertyType) {
+            is PropertyType.CityResidential -> R.drawable.gor_jil_ned
+            is PropertyType.CountryResidential -> R.drawable.zagor_jil_ned
+            is PropertyType.CountryNotResidential -> R.drawable.gor_nejil_ned
+            is PropertyType.Commercial -> R.drawable.komer_ned
+            is PropertyType.Industrial -> R.drawable.prom_ned
+            PropertyType.ProdleniePolisa -> R.drawable.unchecked_profile
+        }
+    }
+
+    private fun generatePolicyNumber(propertyType: PropertyType): String {
+        val prefix = when (propertyType) {
+            is PropertyType.CityResidential -> "CITY"
+            is PropertyType.CountryResidential -> "COUNTRY_RES"
+            is PropertyType.CountryNotResidential -> "COUNTRY_NONRES"
+            is PropertyType.Commercial -> "COM"
+            is PropertyType.Industrial -> "IND"
+            PropertyType.ProdleniePolisa -> "EXT"
+        }
+        val timestamp = System.currentTimeMillis().toString().takeLast(6)
+        return "$prefix-$timestamp"
     }
 
     private fun getYearEnding(years: Int): String = when (years) {
@@ -182,54 +195,12 @@ class FiveStepFragment : Fragment(R.layout.fragment_five_step) {
     private fun renderPdfPreview(uri: Uri, imageView: ImageView) {
         val contentResolver = requireContext().contentResolver
         val fileDescriptor = contentResolver.openFileDescriptor(uri, "r")?.fileDescriptor ?: return
-
         val pdfRenderer = PdfRenderer(ParcelFileDescriptor.dup(fileDescriptor))
         val page = pdfRenderer.openPage(0)
-
         val bitmap = Bitmap.createBitmap(page.width, page.height, Bitmap.Config.ARGB_8888)
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
         page.close()
         pdfRenderer.close()
-
         imageView.setImageBitmap(bitmap)
     }
-
-    private fun generatePolicyNumber(): String {
-        return "POLICY-${System.currentTimeMillis()}" // или другое уникальное значение
-    }
-
-    private fun calculatePeriod(): String {
-        val start = viewModel.startDate.value ?: "??.??.????"
-        val end = viewModel.endDate.value ?: "??.??.????"
-        return "$start – $end"
-    }
-
-    private fun getPlanIconRes(propertyType: PropertyType): Int {
-        return when (propertyType) {
-            is PropertyType.CityResidential -> R.drawable.gor_jil_ned
-            is PropertyType.CountryResidential -> R.drawable.zagor_jil_ned
-            is PropertyType.CountryNotResidential -> R.drawable.gor_nejil_ned
-            is PropertyType.Commercial -> R.drawable.komer_ned
-            is PropertyType.Industrial -> R.drawable.prom_ned
-            PropertyType.ProdleniePolisa -> TODO()
-        }
-    }
-
-    private fun generatePolicyNumber(propertyType: PropertyType): String {
-        val prefix = when (propertyType) {
-            is PropertyType.CityResidential -> "CITY"
-            is PropertyType.CountryResidential -> "COUNTRY_RES"
-            is PropertyType.CountryNotResidential -> "COUNTRY_NONRES"
-            is PropertyType.Commercial -> "COM"
-            is PropertyType.Industrial -> "IND"
-            PropertyType.ProdleniePolisa -> TODO()
-        }
-        val timestamp = System.currentTimeMillis().toString().takeLast(6) // последние 6 цифр времени
-        return "$prefix-$timestamp"
-    }
-
-
-
-
-
 }

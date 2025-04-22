@@ -1,5 +1,6 @@
 package com.example.house_under_safe
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.house_under_safe.databinding.ActivityMainBinding
@@ -7,23 +8,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.example.house_under_safe.ui.MainSharedViewModel
-import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var sharedViewModel: MainSharedViewModel // <- изменено
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        sharedViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        )[MainSharedViewModel::class.java] // <- добавлено
+        deleteFile("policies.json")
 
         val navView: BottomNavigationView = binding.navView
 
@@ -42,5 +37,10 @@ class MainActivity : AppCompatActivity() {
         )
 
         navView.setupWithNavController(navController)
+
+        // ➕ Переход на Home при возврате из DesignPolicyActivity
+        if (intent.flags and Intent.FLAG_ACTIVITY_CLEAR_TOP != 0) {
+            navController.navigate(R.id.navigation_home)
+        }
     }
 }

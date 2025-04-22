@@ -23,16 +23,13 @@ class SecondStepFragment : Fragment(R.layout.fragment_second_step) {
         binding = FragmentSecondStepBinding.bind(view)
         viewModel = ViewModelProvider(requireActivity())[PolicyDesignViewModel::class.java]
 
-        // Восстановить данные, если уже были
         restoreInputs()
 
-        // Кнопка "Назад"
         binding.imageButton3.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
             (requireActivity() as? DesignPolicyActivity)?.updateProgress(0)
         }
 
-        // Кнопка "Далее"
         binding.imageButton4.setOnClickListener {
             val success = saveData()
             if (success) {
@@ -58,7 +55,6 @@ class SecondStepFragment : Fragment(R.layout.fragment_second_step) {
         val adressReg = binding.adresRegistracii.text.toString().trim()
         val adressLive = binding.adresProjivania.text.toString().trim()
 
-        // Проверка обязательных полей
         if (vydan.isEmpty() || dateVydachi.isEmpty() || kod.isEmpty() ||
             lastname.isEmpty() || name.isEmpty() || otchestvo.isEmpty() ||
             dateBirth.isEmpty() || placeBirth.isEmpty() ||
@@ -82,7 +78,9 @@ class SecondStepFragment : Fragment(R.layout.fragment_second_step) {
             adressLive = adressLive
         )
 
+        // Сохраняем во ViewModel
         viewModel.insurerInfo.value = info
+
         return true
     }
 

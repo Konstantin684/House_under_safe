@@ -10,9 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.house_under_safe.R
 import com.example.house_under_safe.model.PropertyType
 
-class HomeAdapter(
-    private var items: List<HomeItemUiModel>
-) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+class HomeAdapter(private var items: List<HomeItemUiModel>) :
+    RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     inner class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val numberPolice: TextView = view.findViewById(R.id.number_polise)
@@ -35,7 +34,7 @@ class HomeAdapter(
 
         holder.numberPolice.text = item.policyNumber
         holder.region.text = item.region
-        holder.typeRealEstate.text = item.subtype.getLabel()
+        holder.typeRealEstate.text = item.subtype.label
         holder.adres.text = item.address
         holder.period.text = item.period
         holder.plan.setImageResource(item.planResId)
@@ -54,6 +53,7 @@ class HomeAdapter(
             holder.risksContainer.addView(riskView)
         }
     }
+
 
     override fun getItemCount(): Int = items.size
 
