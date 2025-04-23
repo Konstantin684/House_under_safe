@@ -165,11 +165,11 @@ class FiveStepFragment : Fragment(R.layout.fragment_five_step) {
 
     private fun generatePolicyNumber(propertyType: PropertyType): String {
         val prefix = when (propertyType) {
-            is PropertyType.CityResidential -> "CITY"
-            is PropertyType.CountryResidential -> "COUNTRY_RES"
-            is PropertyType.CountryNotResidential -> "COUNTRY_NONRES"
-            is PropertyType.Commercial -> "COM"
-            is PropertyType.Industrial -> "IND"
+            is PropertyType.CityResidential -> "ГЖН"
+            is PropertyType.CountryResidential -> "ЗЖН"
+            is PropertyType.CountryNotResidential -> "ГНН"
+            is PropertyType.Commercial -> "КН"
+            is PropertyType.Industrial -> "ИН"
             PropertyType.ProdleniePolisa -> "EXT"
         }
         val timestamp = System.currentTimeMillis().toString().takeLast(6)

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
+    android:windowSoftInputMode="adjustResize"
     tools:context=".policy_design.step_4.FourthStepFragment">
 
     <TextView
@@ -27,6 +28,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
         android:clipToPadding="false"
+        android:fillViewport="true"
         android:paddingBottom="100dp">
 
         <LinearLayout

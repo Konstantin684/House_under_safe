@@ -63,14 +63,14 @@
             <FrameLayout
                 android:layout_width="170dp"
                 android:layout_height="160dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/frame_border">
+                android:layout_gravity="center_vertical">
 
                 <ImageView
                     android:id="@+id/imageView_plan"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:padding="10dp"
                     card_view:srcCompat="@drawable/image_plan" />
             </FrameLayout>
 

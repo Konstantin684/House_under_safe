@@ -17,18 +17,23 @@
         tools:targetApi="31">
         <activity
             android:name=".policy_design.DesignPolicyActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".passport.PassportActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".about_app.AboutAppActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".notifications.NotificationsActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".design_theme.DesignThemeActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".profile_details.ProfileDetailsActivity"
@@ -44,9 +49,11 @@
         </activity> <!-- Экран авторизации -->
         <activity
             android:name=".double_login.DoubleLoginActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" /> <!-- Главный экран -->
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false"
             android:label="@string/title_activity_main" />
     </application>

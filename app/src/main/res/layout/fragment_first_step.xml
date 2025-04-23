@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
+    android:windowSoftInputMode="adjustResize"
     tools:context=".policy_design.step_1.FirstStepFragment">
 
 
@@ -26,6 +27,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fillViewport="true"
         android:layout_marginTop="50dp">
 
         <LinearLayout
@@ -71,6 +73,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
                 android:enabled="true"
+                android:textAllCaps="true"
                 android:hint="@string/add_data"
                 android:inputType="text"
                 android:padding="5dp"
@@ -92,6 +95,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background_selector"
                 android:enabled="true"
+                android:textAllCaps="true"
                 android:hint="@string/add_data"
                 android:inputType="text"
                 android:padding="5dp"
@@ -114,7 +118,7 @@
                 android:background="@drawable/edittext_background_selector"
                 android:enabled="true"
                 android:hint="@string/add_data"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="5dp"
                 android:textColor="@color/text_color_all" />
 
@@ -135,7 +139,7 @@
                 android:background="@drawable/edittext_background_selector"
                 android:enabled="true"
                 android:hint="@string/add_data"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="5dp"
                 android:textColor="@color/text_color_all" />
 
@@ -156,7 +160,7 @@
                 android:background="@drawable/edittext_background_selector"
                 android:enabled="true"
                 android:hint="@string/add_data"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="5dp"
                 android:textColor="@color/text_color_all" />
 
@@ -177,7 +181,7 @@
                 android:background="@drawable/edittext_background_selector"
                 android:enabled="true"
                 android:hint="@string/add_data"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="5dp"
                 android:textColor="@color/text_color_all" />
 
@@ -198,7 +202,7 @@
                 android:background="@drawable/edittext_background_selector"
                 android:enabled="true"
                 android:hint="@string/add_data"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="5dp"
                 android:textColor="@color/text_color_all" />
 
