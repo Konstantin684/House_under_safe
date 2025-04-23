@@ -8,10 +8,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.house_under_safe.R
+import com.example.house_under_safe.model.PropertyType
 import com.example.house_under_safe.ui.home.HomeItemUiModel
 
 class CompensationAdapter(
-    private val items: List<HomeItemUiModel>
+    private var items: List<HomeItemUiModel>
 ) : RecyclerView.Adapter<CompensationAdapter.CompensationViewHolder>() {
 
     inner class CompensationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -57,4 +58,18 @@ class CompensationAdapter(
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun updateItems(newItems: List<HomeItemUiModel>) {
+        items = newItems
+        notifyDataSetChanged()
+    }
+
+    fun Enum<*>.getLabel(): String = when (this) {
+        is PropertyType.CityResidential.Subtype -> label
+        is PropertyType.CountryResidential.Subtype -> label
+        is PropertyType.CountryNotResidential.Subtype -> label
+        is PropertyType.Commercial.Subtype -> label
+        is PropertyType.Industrial.Subtype -> label
+        else -> name
+    }
 }
