@@ -227,6 +227,7 @@
                     android:gravity="center"
                     android:text="1 год"
                     android:textSize="20sp" />
+
             </LinearLayout>
 
             <TextView
@@ -275,6 +276,49 @@
                     android:text="Ежегодно" />
             </RadioGroup>
 
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="2dp"
+                android:text="Итоговая стоимость:"
+                android:textColor="@color/text_color_description" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="2dp">
+
+                <TextView
+                    android:id="@+id/payment_policy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="@color/text_color_all"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="130dp"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/button_active"
+                    android:maxWidth="130dp"
+                    android:maxHeight="55dp"
+                    android:minWidth="120dp"
+                    android:minHeight="50dp"
+                    android:text="Рассчитать \nстоимость"
+                    android:textColor="@color/button_double_login"
+                    app:cornerRadius="5dp" />
+            </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -282,7 +326,7 @@
 
                 <ImageButton
                     android:id="@+id/imageButton3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:background="@drawable/btn_rounded_blue"
@@ -300,7 +344,7 @@
 
                 <ImageButton
                     android:id="@+id/imageButton4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/btn_rounded_blue"
                     android:maxWidth="130dp"
@@ -310,6 +354,8 @@
                     android:src="@drawable/arrow_forward_white" />
 
             </TableRow>
+
+
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

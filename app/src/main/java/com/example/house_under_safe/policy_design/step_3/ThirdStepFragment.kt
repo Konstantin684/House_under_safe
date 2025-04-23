@@ -12,6 +12,7 @@ import com.example.house_under_safe.model.*
 import com.example.house_under_safe.policy_design.DesignPolicyActivity
 import com.example.house_under_safe.policy_design.PolicyDesignViewModel
 import com.example.house_under_safe.policy_design.step_4.FourthStepFragment
+import kotlin.math.roundToInt
 
 class ThirdStepFragment : Fragment(R.layout.fragment_third_step) {
 
@@ -69,16 +70,41 @@ class ThirdStepFragment : Fragment(R.layout.fragment_third_step) {
         restoreInputs(view, checkboxMap, radioMap)
 
         view.findViewById<ImageButton>(R.id.imageButton4).setOnClickListener {
-            handleNextClick(view, konstrukcia, otdelka, tehnicheskoe, dvigimoe, gragdanskaya, checkboxMap, radioGroup, radioMap)
+            handleNextClick(
+                view,
+                konstrukcia,
+                otdelka,
+                tehnicheskoe,
+                dvigimoe,
+                gragdanskaya,
+                checkboxMap,
+                radioGroup,
+                radioMap
+            )
         }
 
         view.findViewById<ImageButton>(R.id.imageButton3).setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
             (requireActivity() as? DesignPolicyActivity)?.updateProgress(1)
         }
+
+        view.findViewById<Button>(R.id.button2).setOnClickListener {
+            // Расчет стоимости полиса при нажатии на кнопку
+            calculateAndDisplayTotalCost(
+                view,
+                konstrukcia,
+                otdelka,
+                tehnicheskoe,
+                dvigimoe,
+                gragdanskaya,
+                checkboxMap,
+                radioGroup,
+                radioMap
+            )
+        }
     }
 
-    private fun handleNextClick(
+    private fun calculateAndDisplayTotalCost(
         view: View,
         konstrukcia: EditText,
         otdelka: EditText,
@@ -95,10 +121,69 @@ class ThirdStepFragment : Fragment(R.layout.fragment_third_step) {
             Toast.makeText(requireContext(), "Введите сумму конструкции", Toast.LENGTH_SHORT).show()
             return
         }
+
         // Получаем и проверяем выбранную частоту платежей
         val selectedFrequency = radioMap[radioGroup.checkedRadioButtonId]
         if (selectedFrequency == null) {
             Toast.makeText(requireContext(), "Выберите частоту платежей", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Получаем остальные значения, очищаем пробелы и преобразуем в Double
+        val finishingCost = getTextWithoutSpaces(otdelka).toDoubleOrNull() ?: 0.0
+        val equipmentCost = getTextWithoutSpaces(tehnicheskoe).toDoubleOrNull() ?: 0.0
+        val movablePropertyCost = getTextWithoutSpaces(dvigimoe).toDoubleOrNull() ?: 0.0
+        val civilLiabilityCost = getTextWithoutSpaces(gragdanskaya).toDoubleOrNull() ?: 0.0
+
+        // Стоимость полиса рассчитывается как сумма всех введённых параметров
+        var totalCost = structure * 0.005 + finishingCost * 0.0025 + equipmentCost * 0.0025 + movablePropertyCost * 0.0025 + civilLiabilityCost * 0.0025
+
+        // Учитываем количество лет для полиса (seekBar.progress + 1)
+        val insuranceTermInYears = seekBar.progress + 1
+
+        // Добавляем 0.5% за каждый выбранный страховой риск
+        val selectedRisks = checkboxMap.filter { view.findViewById<CheckBox>(it.key).isChecked }.values
+        val riskPercentage = selectedRisks.size * 0.005 // 0.5% за каждый риск
+
+        // Умножаем на коэффициент, в зависимости от частоты платежей
+        totalCost *= (1 + riskPercentage) // Добавляем процент за риски
+        totalCost *= insuranceTermInYears // Умножаем на количество лет
+
+        totalCost = when (selectedFrequency) {
+            PaymentFrequency.ONE_TIME -> totalCost // Один раз
+            PaymentFrequency.MONTHLY -> totalCost / (12 * insuranceTermInYears) // Ежемесячно
+            PaymentFrequency.QUARTERLY -> totalCost / (4 * insuranceTermInYears) // Ежеквартально
+            PaymentFrequency.YEARLY -> totalCost / insuranceTermInYears // Ежегодно
+        }
+
+        // Отображаем итоговую стоимость в TextView
+        view.findViewById<TextView>(R.id.payment_policy).text =
+            "${totalCost.roundToInt()} рублей"
+    }
+
+    private fun handleNextClick(
+        view: View,
+        konstrukcia: EditText,
+        otdelka: EditText,
+        tehnicheskoe: EditText,
+        dvigimoe: EditText,
+        gragdanskaya: EditText,
+        checkboxMap: Map<Int, InsuranceRisk>,
+        radioGroup: RadioGroup,
+        radioMap: Map<Int, PaymentFrequency>
+    ) {
+        // Очистка пробелов и преобразование в число
+        val structure = getTextWithoutSpaces(konstrukcia).toDoubleOrNull()
+        if (structure == null) {
+            Toast.makeText(requireContext(), "Введите сумму конструкции", Toast.LENGTH_SHORT)
+                .show()
+            return
+        }
+        // Получаем и проверяем выбранную частоту платежей
+        val selectedFrequency = radioMap[radioGroup.checkedRadioButtonId]
+        if (selectedFrequency == null) {
+            Toast.makeText(requireContext(), "Выберите частоту платежей", Toast.LENGTH_SHORT)
+                .show()
             return
         }
         // Получаем остальные значения, очищаем пробелы и преобразуем в Double
@@ -129,7 +214,6 @@ class ThirdStepFragment : Fragment(R.layout.fragment_third_step) {
             .commit()
     }
 
-
     private fun restoreInputs(
         view: View,
         checkboxMap: Map<Int, InsuranceRisk>,
@@ -137,22 +221,32 @@ class ThirdStepFragment : Fragment(R.layout.fragment_third_step) {
     ) {
         viewModel.insuranceConditions.value?.let { saved ->
             //очищаем поля от пробелов
-            view.findViewById<EditText>(R.id.konstrukcia).setText(getTextWithoutSpaces(view.findViewById(R.id.konstrukcia)))
-            view.findViewById<EditText>(R.id.otdelka).setText(getTextWithoutSpaces(view.findViewById(R.id.otdelka)))
-            view.findViewById<EditText>(R.id.tehnicheskoe_oborudovanie).setText(getTextWithoutSpaces(view.findViewById(R.id.tehnicheskoe_oborudovanie)))
-            view.findViewById<EditText>(R.id.dvigimoe_imuchestvo).setText(getTextWithoutSpaces(view.findViewById(R.id.dvigimoe_imuchestvo)))
-            view.findViewById<EditText>(R.id.gragdanskaya_otvetstvennost).setText(getTextWithoutSpaces(view.findViewById(R.id.gragdanskaya_otvetstvennost)))
+            view.findViewById<EditText>(R.id.konstrukcia)
+                .setText(getTextWithoutSpaces(view.findViewById(R.id.konstrukcia)))
+            view.findViewById<EditText>(R.id.otdelka)
+                .setText(getTextWithoutSpaces(view.findViewById(R.id.otdelka)))
+            view.findViewById<EditText>(R.id.tehnicheskoe_oborudovanie)
+                .setText(getTextWithoutSpaces(view.findViewById(R.id.tehnicheskoe_oborudovanie)))
+            view.findViewById<EditText>(R.id.dvigimoe_imuchestvo)
+                .setText(getTextWithoutSpaces(view.findViewById(R.id.dvigimoe_imuchestvo)))
+            view.findViewById<EditText>(R.id.gragdanskaya_otvetstvennost)
+                .setText(getTextWithoutSpaces(view.findViewById(R.id.gragdanskaya_otvetstvennost)))
 
             // Присваиваем сохраненные данные
-            view.findViewById<EditText>(R.id.konstrukcia).setText(saved.constructionCost.toString())
-            view.findViewById<EditText>(R.id.otdelka).setText(saved.finishingCost?.toString() ?: "")
-            view.findViewById<EditText>(R.id.tehnicheskoe_oborudovanie).setText(saved.equipmentCost?.toString() ?: "")
-            view.findViewById<EditText>(R.id.dvigimoe_imuchestvo).setText(saved.movablePropertyCost?.toString() ?: "")
-            view.findViewById<EditText>(R.id.gragdanskaya_otvetstvennost).setText(saved.civilLiabilityCost?.toString() ?: "")
-
+            view.findViewById<EditText>(R.id.konstrukcia)
+                .setText(saved.constructionCost.toString())
+            view.findViewById<EditText>(R.id.otdelka)
+                .setText(saved.finishingCost?.toString() ?: "")
+            view.findViewById<EditText>(R.id.tehnicheskoe_oborudovanie)
+                .setText(saved.equipmentCost?.toString() ?: "")
+            view.findViewById<EditText>(R.id.dvigimoe_imuchestvo)
+                .setText(saved.movablePropertyCost?.toString() ?: "")
+            view.findViewById<EditText>(R.id.gragdanskaya_otvetstvennost)
+                .setText(saved.civilLiabilityCost?.toString() ?: "")
 
             seekBar.progress = (saved.insuranceTermInYears - 1).coerceIn(0, 9)
-            durationText.text = "${saved.insuranceTermInYears} ${getYearEnding(saved.insuranceTermInYears)}"
+            durationText.text =
+                "${saved.insuranceTermInYears} ${getYearEnding(saved.insuranceTermInYears)}"
 
             radioMap.entries.find { it.value == saved.paymentFrequency }?.key?.let {
                 view.findViewById<RadioGroup>(R.id.radioGroup).check(it)
@@ -164,13 +258,13 @@ class ThirdStepFragment : Fragment(R.layout.fragment_third_step) {
         }
     }
 
-    private fun getYearEnding(years: Int): String = when (years) {
+    fun getYearEnding(years: Int): String = when (years) {
         1 -> "год"
         2, 3, 4 -> "года"
         else -> "лет"
     }
 
-    private fun calculatePeriod(years: Int): String {
+    fun calculatePeriod(years: Int): String {
         val calendar = java.util.Calendar.getInstance()
         val format = java.text.SimpleDateFormat("dd.MM.yyyy", java.util.Locale.getDefault())
         val start = format.format(calendar.time)
@@ -181,17 +275,28 @@ class ThirdStepFragment : Fragment(R.layout.fragment_third_step) {
 
     fun setNumericFormattedTextWatcher(editText: EditText, maxLength: Int) {
         editText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun beforeTextChanged(
+                charSequence: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
                 // Не обновляем текст здесь, чтобы избежать бесконечной рекурсии
             }
 
-            override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun onTextChanged(
+                charSequence: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
                 // Ничего не делаем в процессе изменения текста
             }
 
             override fun afterTextChanged(editable: Editable?) {
                 editable?.let {
-                    var input = editable.toString().replace("[^\\d]".toRegex(), "") // Убираем все символы, кроме цифр
+                    var input = editable.toString()
+                        .replace("[^\\d]".toRegex(), "") // Убираем все символы, кроме цифр
 
                     // Ограничиваем количество символов
                     if (input.length > maxLength) {
@@ -206,26 +311,39 @@ class ThirdStepFragment : Fragment(R.layout.fragment_third_step) {
                             // Если длина <= 3: XXX
                             formattedInput.append(input)
                         }
+
                         input.length in 4..4 -> {
                             // Если длина == 4: X XXX
-                            formattedInput.append(input.substring(0, 1)).append(" ").append(input.substring(1))
+                            formattedInput.append(input.substring(0, 1)).append(" ")
+                                .append(input.substring(1))
                         }
+
                         input.length in 5..5 -> {
                             // Если длина == 5: XX XXX
-                            formattedInput.append(input.substring(0, 2)).append(" ").append(input.substring(2))
+                            formattedInput.append(input.substring(0, 2)).append(" ")
+                                .append(input.substring(2))
                         }
+
                         input.length in 6..6 -> {
                             // Если длина == 6: XXX XXX
-                            formattedInput.append(input.substring(0, 3)).append(" ").append(input.substring(3))
+                            formattedInput.append(input.substring(0, 3)).append(" ")
+                                .append(input.substring(3))
                         }
+
                         input.length in 7..7 -> {
                             // Если длина == 7: X XXX XXX
-                            formattedInput.append(input.substring(0, 1)).append(" ").append(input.substring(1, 4)).append(" ").append(input.substring(4))
+                            formattedInput.append(input.substring(0, 1)).append(" ")
+                                .append(input.substring(1, 4)).append(" ")
+                                .append(input.substring(4))
                         }
+
                         input.length in 8..8 -> {
                             // Если длина == 8: XX XXX XXX
-                            formattedInput.append(input.substring(0, 2)).append(" ").append(input.substring(2, 5)).append(" ").append(input.substring(5))
+                            formattedInput.append(input.substring(0, 2)).append(" ")
+                                .append(input.substring(2, 5)).append(" ")
+                                .append(input.substring(5))
                         }
+
                         input.length > 8 -> {
                             // Для всех длин > 8, можно продолжить добавление пробела после каждых 3 цифр
                             for (i in input.indices) {
@@ -248,6 +366,7 @@ class ThirdStepFragment : Fragment(R.layout.fragment_third_step) {
             }
         })
     }
+
     fun getTextWithoutSpaces(editText: EditText): String {
         return editText.text.toString().replace(" ", "")
     }
