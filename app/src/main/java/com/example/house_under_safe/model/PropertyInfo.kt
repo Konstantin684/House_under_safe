@@ -34,7 +34,7 @@ sealed class PropertyType(val label: String) : Serializable {
         }
     }
 
-    object CountryNotResidential : PropertyType("Загородная нежилая недвижимость") {
+    object CountryNotResidential : PropertyType("Городская нежилая недвижимость") {
         enum class Subtype(override val label: String) : PropertySubtype{
             APARTAMENTS("Апартаменты"),
             GARAGE("Гараж")

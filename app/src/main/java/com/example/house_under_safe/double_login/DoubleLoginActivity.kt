@@ -117,9 +117,11 @@ class DoubleLoginActivity : AppCompatActivity() {
     }
 
     private fun checkCodeAndProceed() {
-        val correctCode = "1111"
+        // Получаем сохранённый код из SharedPreferences (например, pin_prefs)
+        val prefs = getSharedPreferences("pin_prefs", Context.MODE_PRIVATE)
+        val savedPin = prefs.getString("user_pin", null)
 
-        if (enteredCode.toString() == correctCode) {
+        if (enteredCode.toString() == savedPin) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         } else {
@@ -128,6 +130,7 @@ class DoubleLoginActivity : AppCompatActivity() {
             playShakeAnimation()
         }
     }
+
 
     private fun playShakeAnimation() {
         val shake = AnimationUtils.loadAnimation(this, R.anim.shake)

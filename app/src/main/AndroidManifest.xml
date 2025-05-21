@@ -16,25 +16,34 @@
         android:theme="@style/Theme.House_under_safe"
         tools:targetApi="31">
         <activity
-            android:name=".policy_design.DesignPolicyActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:name=".double_login.DobleLoginNewCodeActivity"
             android:exported="false" />
+        <activity
+            android:name=".registration.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".policy_design.DesignPolicyActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".passport.PassportActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".about_app.AboutAppActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".notifications.NotificationsActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".design_theme.DesignThemeActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".profile_details.ProfileDetailsActivity"
             android:exported="false" /> <!-- Заставка — теперь LAUNCHER -->
@@ -49,13 +58,13 @@
         </activity> <!-- Экран авторизации -->
         <activity
             android:name=".double_login.DoubleLoginActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" /> <!-- Главный экран -->
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" /> <!-- Главный экран -->
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize"
             android:exported="false"
-            android:label="@string/title_activity_main" />
+            android:label="@string/title_activity_main"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

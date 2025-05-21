@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".double_login.DobleLoginNewCodeActivity">
+
+    <!-- Текст над dots -->
+    <TextView
+        android:id="@+id/enterCodeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Введите код"
+        android:textSize="16sp"
+        android:textColor="@color/text_color_all"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/codeDots"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:layout_marginTop="80dp"/>
+
+    <!-- Dots (4 кружка) -->
+    <LinearLayout
+        android:id="@+id/codeDots"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/enterCodeText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@id/keypad"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <View
+            android:id="@+id/dot1"
+            style="@style/CodeDotStyle" />
+
+        <View
+            android:id="@+id/dot2"
+            style="@style/CodeDotStyle" />
+
+        <View
+            android:id="@+id/dot3"
+            style="@style/CodeDotStyle" />
+
+        <View
+            android:id="@+id/dot4"
+            style="@style/CodeDotStyle" />
+    </LinearLayout>
+
+    <!-- Клавиатура (GridLayout) -->
+    <GridLayout
+        android:id="@+id/keypad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="48dp">
+
+        <!-- Кнопки 1-9 -->
+        <Button
+            android:id="@+id/btn1"
+            style="@style/KeypadButton"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/btn2"
+            style="@style/KeypadButton"
+            android:text="2" />
+
+        <Button
+            android:id="@+id/btn3"
+            style="@style/KeypadButton"
+            android:text="3" />
+
+        <Button
+            android:id="@+id/btn4"
+            style="@style/KeypadButton"
+            android:text="4" />
+
+        <Button
+            android:id="@+id/btn5"
+            style="@style/KeypadButton"
+            android:text="5" />
+
+        <Button
+            android:id="@+id/btn6"
+            style="@style/KeypadButton"
+            android:text="6" />
+
+        <Button
+            android:id="@+id/btn7"
+            style="@style/KeypadButton"
+            android:text="7" />
+
+        <Button
+            android:id="@+id/btn8"
+            style="@style/KeypadButton"
+            android:text="8" />
+
+        <Button
+            android:id="@+id/btn9"
+            style="@style/KeypadButton"
+            android:text="9" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp" /> <!-- Просто пустое место для симметрии -->
+
+        <Button
+            android:id="@+id/btn0"
+            style="@style/KeypadButton"
+            android:text="0" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp" /> <!-- Просто пустое место для симметрии -->
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

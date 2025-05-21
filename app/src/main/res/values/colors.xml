@@ -16,6 +16,7 @@
     <color name="back_edittext">#FCF8F8</color>
     <color name="button_active">#3485FF</color>
     <color name="button_inactive">#C9DCFA</color>
+    <color name="stroke_edit_text">#E0E0E0</color>
     <color name="text_chip_active">#FFFFFF</color>
     <color name="text_chip_inactive">#3485FF</color>
     <color name="green">#4CAF50</color>
